@@ -48,34 +48,12 @@
     display: flex;
     flex-direction: row;
     border-radius: 50px;
-    height: 70%;
-    width: 40%;
-    > .header {
+    height: 500px;
+    width: 600px;
+    >.router-container{
       width: 100%;
-      height: 15%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      > .sign-in {
-        width: 50%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: end;
-        font-size: 2.5rem;
-        font-weight: bold;
-        color: #74224d;
-      }
-      > .sign-up {
-        width: 50%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: end;
-        font-size: 2.5rem;
-        font-weight: bold;
-        color: #74224d;
-      }
+      height: 100%;
     }
+
   }
 }

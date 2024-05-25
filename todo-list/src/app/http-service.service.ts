@@ -8,6 +8,10 @@ export class HttpService {
   constructor(private http: HttpClient) {}
 
   userRegistration(userData: any) {
-    this.http.post(this.http + 'users', { userData });
+    delete userData.confirmPassword;
+    return this.http.post(this.http + 'users', { userData });
+  }
+  loginUser(user:any){
+    return this.http.post<any>(this.url + 'users/login', { userObject: user });
   }
 }

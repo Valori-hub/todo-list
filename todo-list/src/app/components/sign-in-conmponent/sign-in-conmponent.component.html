@@ -1,0 +1,19 @@
+<div class="login-page">
+  <form [formGroup]="loginForm">
+    <mat-card>
+        <div class="username-container">
+            <input [formControl]="loginForm.controls.username">
+        </div>
+    
+        <div class="password-container">
+          <input matInput [type]="hide ? 'password' : 'text'" [formControl]="loginForm.controls.password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </div>
+        <div class="button-section">
+          <button type="submit" (click)="login()">Log in</button>
+        </div>
+    </mat-card>
+  </form>
+</div>
