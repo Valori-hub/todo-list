@@ -1,0 +1,34 @@
+<div class="login-page">
+  <div class="header"><span>Login</span></div>
+  <form [formGroup]="loginForm">
+    <mat-card>
+      <div class="username-container">
+        <input
+          [formControl]="loginForm.controls.username"
+          placeholder="Username"
+        />
+      </div>
+      <div class="password-container">
+        <input
+          placeholder="Password"
+          [type]="hide ? 'password' : 'text'"
+          [formControl]="loginForm.controls.password"
+        />
+        <div class="icon">
+          <button
+            mat-icon-button
+            matSuffix
+            (click)="hide = !hide"
+            [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide"
+          >
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="button-section">
+        <button type="submit" (click)="login()">Log in</button>
+      </div>
+    </mat-card>
+  </form>
+</div>
