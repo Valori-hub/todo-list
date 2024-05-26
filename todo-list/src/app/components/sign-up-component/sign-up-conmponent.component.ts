@@ -63,6 +63,7 @@ validatePasswordConfirmation: ValidatorFn = (
     firstName: new FormControl<string>('', [Validators.required]),
     lastName: new FormControl<string>('', [Validators.required]),
     gender: new FormControl<string>('', [Validators.required]),
+    todo: new FormControl<[]>([])
   });
 
   getPasswordLabel(): string {
@@ -90,6 +91,7 @@ validatePasswordConfirmation: ValidatorFn = (
   }
   register(): void {
     const formValues = this.registrationForm.getRawValue();
+    console.log(formValues)
     this.httpClient.userRegistration(formValues).subscribe((response: any) => {
       if (response.data.success) {
         this.router.navigateByUrl('(authentication:login)');

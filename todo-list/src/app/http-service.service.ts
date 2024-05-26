@@ -9,9 +9,10 @@ export class HttpService {
 
   userRegistration(userData: any) {
     delete userData.confirmPassword;
-    return this.http.post(this.http + 'users', { userData });
+    return this.http.post(this.http + 'users/register', { userData });
   }
   loginUser(user:any){
+    console.log('hej')
     return this.http.post<any>(this.url + 'users/login', { userObject: user });
   }
 }

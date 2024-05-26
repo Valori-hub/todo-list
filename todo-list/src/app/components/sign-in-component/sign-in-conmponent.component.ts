@@ -29,8 +29,6 @@ import { Router } from '@angular/router';
   styleUrl: './sign-in-conmponent.component.scss'
 })
 export class SignInComponent {
-  rightSectionFirstText: string | null = 'SIGN';
-  rightSectionSecoundText: string | null = 'in';
   hide = true;
   loginForm = new FormGroup({
     username: new FormControl<string>('', [Validators.required]),
@@ -44,18 +42,15 @@ export class SignInComponent {
         this.httpClient.loginUser(formValues).subscribe(
           (response:any) =>{
             if(response.data.success){
-              sessionStorage.setItem('sessionId', response.sessionId);
-              sessionStorage.setItem('username', response.user);
-              sessionStorage.setItem('gender', response.userGender);
-              this.rightSectionFirstText = 'Welcome';
-              this.rightSectionSecoundText = response.data.userExist.firstName;
+              // sessionStorage.setItem('sessionId', response.sessionId);
+              // sessionStorage.setItem('username', response.user);
+              // sessionStorage.setItem('gender', response.userGender);
               console.log('logged in');
               setTimeout(() => {
                 this.router.navigate(['']);
             }, 3000);
             }else{
-              this.rightSectionFirstText = response.data.message1;
-              this.rightSectionSecoundText = response.data.message2;
+              console.log(response.message)
             }
           }
         )

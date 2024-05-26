@@ -11,7 +11,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.use('/user', UserRoutes.router as RequestHandler);
+app.use('/users', UserRoutes.router as RequestHandler);
 // app.use('/playlists', PlaylistRoutes.router as RequestHandler);
 // app.use('/users', UserRoutes.router as RequestHandler);
 

@@ -1,7 +1,8 @@
 <div class="login-page">
   <div class="header"><span>Login</span></div>
   <form [formGroup]="loginForm">
-    <mat-card>
+    <div class="card-container">
+      
       <div class="username-container">
         <input
           [formControl]="loginForm.controls.username"
@@ -29,6 +30,8 @@
       <div class="button-section">
         <button type="submit" (click)="login()">Log in</button>
       </div>
-    </mat-card>
+    </div>
+    
   </form>
+
 </div>

@@ -1,7 +1,7 @@
 import * as MongoDb from 'mongodb';
 
 const mongoURI: string = 'mongodb://localhost:27017';
-const dbName: string = 'Todo';
+const dbName: string = 'Todo-list';
 
 let db: MongoDb.Db;
 
