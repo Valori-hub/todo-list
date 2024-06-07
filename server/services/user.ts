@@ -3,7 +3,29 @@ import { db } from '../shared/db_connection';
 
 export async function userRegistration(userData: any) {
   try {
-  } catch (error) {}
+    const userExist =
+      (
+        await db
+          .collection('Users')
+          .find({
+            $or: [{ username: userData.username }, { email: userData.email }],
+          })
+          .toArray()
+      ).length > 0;
+    if (userExist === false) {
+      const documents = await db.collection('Users').insertOne(userData);
+      console.log('Account has been created');
+      return {
+        success: true,
+        message: 'Account created successfully',
+        data: documents,
+      };
+    } else {
+      return { success: false, message: 'User already exists' };
+    }
+  } catch (error) {
+    console.error('Error fetching documents:', error);
+  }
 }
 export async function userLogin(newItemData: {
   username: string;
@@ -17,7 +39,7 @@ export async function userLogin(newItemData: {
     if (userExist != null) {
       return { success: true, message: 'Logged in ', userExist };
     } else {
-      return { success: false, message1: "Couldn't find", message2: 'account' };
+      return { success: false, message1: "Couldn't find account" };
     }
   } catch (error) {
     console.error('Error fetching documents:', error);

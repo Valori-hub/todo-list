@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { HttpService } from '../../http-service.service';
 import { SignUpComponent } from '../../components/sign-up-component/sign-up-conmponent.component';
 import { SignInComponent } from '../../components/sign-in-component/sign-in-conmponent.component';
@@ -11,4 +11,17 @@ import { SignInComponent } from '../../components/sign-in-component/sign-in-conm
   styleUrl: './authenticator.component.scss',
   imports: [RouterOutlet, SignUpComponent, SignInComponent],
 })
-export class AuthenticatorComponent {}
+export class AuthenticatorComponent {
+  constructor(private router: Router) {
+    this.router.navigate([
+      {
+        outlets: {
+          primary: [
+            'authenticator',
+            { outlets: { authentication: ['login'] } },
+          ],
+        },
+      },
+    ]);
+  }
+}

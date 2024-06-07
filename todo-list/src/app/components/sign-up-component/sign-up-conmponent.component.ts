@@ -1,5 +1,13 @@
 import { Component } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidatorFn, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { merge } from 'rxjs';
 import { HttpService } from '../../http-service.service';
@@ -23,15 +31,15 @@ import { CommonModule } from '@angular/common';
     MatCardModule,
     FormsModule,
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './sign-up-conmponent.component.html',
-  styleUrl: './sign-up-conmponent.component.scss'
+  styleUrl: './sign-up-conmponent.component.scss',
 })
 export class SignUpComponent {
-errorMessage = '';
-hide = true;
-validatePasswordConfirmation: ValidatorFn = (
+  errorMessage = '';
+  hide = true;
+  validatePasswordConfirmation: ValidatorFn = (
     control: AbstractControl
   ): { [key: string]: any } | null => {
     if (!control.parent) {
@@ -62,10 +70,11 @@ validatePasswordConfirmation: ValidatorFn = (
     ]),
     firstName: new FormControl<string>('', [Validators.required]),
     lastName: new FormControl<string>('', [Validators.required]),
-    gender: new FormControl<string>('', [Validators.required]),
-    todo: new FormControl<[]>([])
+    todo: new FormControl<[]>([]),
   });
-
+  goToLogin() {
+    this.router.navigate(['/authenticator/login']);
+  }
   getPasswordLabel(): string {
     return this.registrationForm.hasError('validatePasswordConfirmation')
       ? 'Passwords do not match'
@@ -91,10 +100,13 @@ validatePasswordConfirmation: ValidatorFn = (
   }
   register(): void {
     const formValues = this.registrationForm.getRawValue();
-    console.log(formValues)
-    this.httpClient.userRegistration(formValues).subscribe((response: any) => {
+    this.httpClient.createUser(formValues).subscribe((response: any) => {
       if (response.data.success) {
-        this.router.navigateByUrl('(authentication:login)');
+        console.log(response.data.message);
+        setTimeout(() => {
+          this.router.navigate(['authenticator/login']);
+        }, 2000);
+
         console.log('User created!');
       } else if (!response.data.success) {
         console.log('Invalid user data');
@@ -102,5 +114,3 @@ validatePasswordConfirmation: ValidatorFn = (
     });
   }
 }
-
-

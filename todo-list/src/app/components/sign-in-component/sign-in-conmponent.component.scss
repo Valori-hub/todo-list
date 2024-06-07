@@ -1,7 +1,7 @@
 .login-page {
   width: 100%;
   height: 100%;
-  >.header{
+  > .header {
     font-size: 5rem;
     font-weight: 500;
     color: #5c1c43;
@@ -13,8 +13,8 @@
   }
   > form {
     width: 100%;
-    height: 100%;
-    >.card-container{
+    height: 50%;
+    > .card-container {
       height: 100%;
       width: 100%;
       background-color: transparent;
@@ -72,8 +72,8 @@
         height: 30%;
         width: 100%;
         > button {
-          color:white;
-          background-color: #9A3571;
+          color: white;
+          background-color: #9a3571;
           border: none;
           border-radius: 30px;
           height: 60px;
