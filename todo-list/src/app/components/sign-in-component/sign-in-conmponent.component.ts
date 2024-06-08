@@ -15,6 +15,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { HttpService } from '../../http-service.service';
 import { Router } from '@angular/router';
+import { authService } from '../../auth-service.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -42,16 +43,22 @@ export class SignInComponent {
       Validators.minLength(8),
     ]),
   });
-  constructor(private httpClient: HttpService, private router: Router) {}
+  constructor(
+    private httpClient: HttpService,
+    private auth: authService,
+    private router: Router
+  ) {}
   goToRegister() {
     this.router.navigate(['/authenticator/register']);
   }
-  login() {
+  async login() {
     const formValues = this.loginForm.getRawValue();
     this.httpClient.loginUser(formValues).subscribe((response) => {
       if (response.result.success) {
+        this.auth.getSessionData();
         console.log(response.result.message);
         setTimeout(() => {
+          console.log(this.auth.getUsername());
           this.router.navigate(['home']);
         }, 3000);
       } else {

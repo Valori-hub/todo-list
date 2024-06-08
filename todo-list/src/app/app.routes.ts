@@ -4,12 +4,12 @@ import { SignInComponent } from './components/sign-in-component/sign-in-conmpone
 import { AuthenticatorComponent } from './pages/authenticator/authenticator.component';
 import { SignUpComponent } from './components/sign-up-component/sign-up-conmponent.component';
 import { authService } from './auth-service.service';
+import { AuthGuard } from './auth-guard.guard';
 
 export const routes: Routes = [
   {
     path: 'authenticator',
     component: AuthenticatorComponent,
-    canActivate: [authService],
     children: [
       {
         path: '',

@@ -5,25 +5,32 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class authService {
-  username: string | null | undefined;
+  username: string | null = null;
   constructor(private httpClient: HttpService) {}
 
-  getSessionData() {
-    this.httpClient.getSessionData().subscribe((result) => {
+  async getSessionData() {
+    await this.httpClient.getSessionData().subscribe((result) => {
+      console.log(result.username);
       this.username = result.username;
+      console.log(this.username);
     });
   }
   isLoggedIn(): boolean {
-    if (this.username !== '' && this.username !== undefined) {
+    if (
+      this.username !== '' &&
+      this.username !== undefined &&
+      this.username !== null
+    ) {
+      console.log(this.username + 'zalogowany');
       return true;
     } else {
+      console.log(this.username + ' nie jestes zalogowany');
       return false;
     }
   }
   getUsername(): string {
     if (this.username != null) {
       return this.username;
-    }
-    return '';
+    } else return '';
   }
 }
