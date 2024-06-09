@@ -3,13 +3,14 @@ import { HomeComponent } from './pages/home/home.component';
 import { SignInComponent } from './components/sign-in-component/sign-in-conmponent.component';
 import { AuthenticatorComponent } from './pages/authenticator/authenticator.component';
 import { SignUpComponent } from './components/sign-up-component/sign-up-conmponent.component';
-import { authService } from './auth-service.service';
+
+import { authGuard, authHomeHuard } from './auth-guard.guard';
 
 export const routes: Routes = [
   {
     path: 'authenticator',
     component: AuthenticatorComponent,
-    canActivate: [authService],
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -26,6 +27,6 @@ export const routes: Routes = [
       },
     ],
   },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate: [authHomeHuard] },
   { path: '', redirectTo: '/authenticator', pathMatch: 'full' },
 ];
