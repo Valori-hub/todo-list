@@ -1,5 +1,6 @@
 import * as MongoDb from 'mongodb';
 import { db } from '../shared/db_connection';
+import * as interfaces from '../module/interfaces';
 
 export async function userRegistration(userData: any) {
   try {
@@ -37,7 +38,9 @@ export async function userLogin(newItemData: {
       password: newItemData.password,
     });
     if (userExist != null) {
-      return { success: true, message: 'Logged in ', userExist };
+      const userData: interfaces.userObject =
+        userExist as unknown as interfaces.userObject;
+      return { success: true, message: 'Logged in ', userData };
     } else {
       return { success: false, message1: "Couldn't find account" };
     }

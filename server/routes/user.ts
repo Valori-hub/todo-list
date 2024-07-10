@@ -4,8 +4,8 @@ import { ObjectId } from 'mongodb';
 
 declare module 'express-session' {
   interface SessionData {
-    username?: string;
-    userId?: ObjectId;
+    userId: ObjectId;
+    username: string;
   }
 }
 const router = express.Router();
@@ -27,23 +27,25 @@ router.post('/login', async (req: ExpressRequest, res: Response) => {
     if (Array.isArray(result)) {
       res.status(401).json({ error: 'Invalid credentials' });
       return;
-    } else if (result.success && result.userExist) {
+    } else if (result.success && result.userData) {
       if (!req.session) {
         console.error('Session is not initialized');
         res.status(500).json({ error: 'Session is not initialized' });
         return;
       }
-      if (!result.userExist) {
+      if (!result.userData) {
         console.error('User does not exist');
         res.status(401).json({ error: 'User does not exist' });
         return;
       }
-      req.session.userId = result.userExist._id;
-      req.session.username = result.userExist.username;
-      const username = req.session.username;
-      console.log(req.session.userId);
+      const { email, password, _id, ...filteredUserData } = result.userData;
+      const { userData, ...resultObjectData } = result;
+      req.session.username = result.userData.username;
+      req.session.userId = result.userData._id;
       console.log('Token has been created!');
-      res.status(201).json({ username: username, result: result });
+      res
+        .status(201)
+        .json({ result: resultObjectData, userData: filteredUserData });
     } else {
       res.status(401).json({ error: 'Invalid credentials' });
     }

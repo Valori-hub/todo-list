@@ -7,12 +7,14 @@ import { Injectable } from '@angular/core';
 })
 export class authService {
   username: string | null = null;
+  userID: any;
   constructor(private httpClient: HttpService) {}
 
   async getSessionData() {
     const result = await firstValueFrom(this.httpClient.getSessionData());
     if (result.username !== null && result.username !== undefined) {
       this.username = result.username;
+      this.userID = result.userId;
     } else {
     }
   }
@@ -23,7 +25,6 @@ export class authService {
       this.username !== null
     );
   }
-
   getUsername(): string {
     return this.username ? this.username : '';
   }

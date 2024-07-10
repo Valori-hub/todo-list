@@ -70,7 +70,7 @@ export class SignUpComponent {
     ]),
     firstName: new FormControl<string>('', [Validators.required]),
     lastName: new FormControl<string>('', [Validators.required]),
-    todo: new FormControl<[]>([]),
+    todo: new FormControl<{}[]>([{ name: 'Unassigned tasks', tasks: [] }], []),
   });
   goToLogin() {
     this.router.navigate(['/authenticator/login']);
