@@ -2,7 +2,7 @@
   <div class="header">Sign up</div>
   <form [formGroup]="registrationForm">
     <div class="card-container">
-      <div class="username-container">
+      <div class="form__group field">
         <input
           placeholder="Username"
           [formControl]="registrationForm.controls.username"
@@ -18,7 +18,7 @@
       </div>
 
       <div class="personal-details_container">
-        <div class="inputs-container">
+        <div class="form__group field">
           <input
             placeholder="Name"
             [formControl]="registrationForm.controls.firstName"
@@ -29,7 +29,7 @@
           />
         </div>
       </div>
-      <div class="password-container">
+      <div class="form__group field">
         <input
           placeholder="Password"
           [type]="hide ? 'password' : 'text'"
@@ -47,7 +47,7 @@
           </button>
         </div>
       </div>
-      <div class="password-container">
+      <div class="form__group field">
         <input
           placeholder="Password"
           [type]="hide ? 'password' : 'text'"

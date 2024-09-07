@@ -1,10 +1,18 @@
+$primary: #050f0b;
+$secondary: #0e9060;
+$white: #fff;
+$accent: #09f69f;
 .login-page {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   > .header {
+    font-weight: bold;
     font-size: 5rem;
-    font-weight: 500;
-    color: #5c1c43;
+    color: $primary;
     width: 100%;
     height: 30%;
     display: flex;
@@ -22,65 +30,103 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      > .username-container {
-        margin: 3% 0 3% 0;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        input {
-          background-color: #ecc9db;
-          border-radius: 20px;
-          border: none;
-          height: 60px;
-          width: 60%;
-          padding: 0 50px 0 20px;
-        }
-      }
-      > .password-container {
-        margin: 3% 0 3% 0;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        align-items: end;
-        justify-content: center;
-        width: 100%;
-        > .icon {
-          height: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: end;
-          position: relative;
-          > button {
-            position: absolute;
-          }
-        }
-        input {
-          background-color: #ecc9db;
-          border-radius: 20px;
-          border: none;
-          height: 60px;
-          width: 60%;
-          padding: 0 50px 0 20px;
-        }
-      }
       > .button-section {
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
+        flex-direction: column;
         height: 30%;
         width: 100%;
         > button {
           color: white;
-          background-color: #9a3571;
+          background-color: $secondary;
           border: none;
           border-radius: 30px;
           height: 60px;
           width: 30%;
           cursor: pointer;
         }
+        > a {
+          cursor: pointer;
+        }
       }
     }
+  }
+}
+
+.form__group {
+  margin-bottom: 30px;
+  position: relative;
+  padding: 15px 0 0;
+  margin-top: 10px;
+  width: 65%;
+  display: flex;
+  flex-direction: row;
+  align-items: end;
+  > .icon {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    position: relative;
+    > button {
+      position: absolute;
+    }
+  }
+}
+
+.form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 0;
+  border-bottom: 2px solid gray;
+  outline: 0;
+  font-size: 1.3rem;
+  color: $white;
+  padding: 7px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+
+  &::placeholder {
+    color: transparent;
+  }
+
+  &:placeholder-shown ~ .form__label {
+    font-size: 1.3rem;
+    cursor: text;
+    top: 20px;
+  }
+}
+
+.form__label {
+  position: absolute;
+  top: 0;
+  display: block;
+  transition: 0.2s;
+  font-size: 1rem;
+  color: gray;
+}
+
+.form__field:focus {
+  ~ .form__label {
+    position: absolute;
+    top: 0;
+    display: block;
+    transition: 0.2s;
+    font-size: 1rem;
+    color: $secondary;
+    font-weight: 700;
+  }
+  padding-bottom: 6px;
+  font-weight: 700;
+  border-width: 3px;
+  border-image: linear-gradient(to right, $secondary, $primary);
+  border-image-slice: 1;
+}
+/* reset input */
+.form__field {
+  &:required,
+  &:invalid {
+    box-shadow: none;
   }
 }

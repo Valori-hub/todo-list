@@ -2,17 +2,27 @@
   <div class="header"><span>Login</span></div>
   <form [formGroup]="loginForm">
     <div class="card-container">
-      <div class="username-container">
+      <div class="form__group field">
         <input
           [formControl]="loginForm.controls.username"
+          type="input"
+          class="form__field"
           placeholder="Username"
+          name="name"
+          id="name"
+          required
         />
+        <label for="name" class="form__label">Username</label>
       </div>
-      <div class="password-container">
+      <div class="form__group field">
         <input
-          placeholder="Password"
           [type]="hide ? 'password' : 'text'"
           [formControl]="loginForm.controls.password"
+          class="form__field"
+          placeholder="Password"
+          name="name"
+          id="name"
+          required
         />
         <div class="icon">
           <button
@@ -25,6 +35,7 @@
             <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
           </button>
         </div>
+        <label for="name" class="form__label">Password</label>
       </div>
       <div class="button-section">
         <button type="submit" (click)="login()">Log in</button>
@@ -33,3 +44,14 @@
     </div>
   </form>
 </div>
+<!-- <div class="form__group field">
+  <input
+    type="input"
+    class="form__field"
+    placeholder="Name"
+    name="name"
+    id="name"
+    required
+  />
+  <label for="name" class="form__label">Name</label>
+</div> -->

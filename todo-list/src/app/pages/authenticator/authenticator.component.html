@@ -4,4 +4,15 @@
       <router-outlet></router-outlet>
     </div>
   </div>
+
+  <div class="side-container">
+    <div class="text-container" *ngIf="isRouteActive('/authenticator/login')">
+      <h1>Welcome back</h1>
+      <p>
+        We're excited to have you with us again. Whether you're here to tackle
+        new tasks or wrap up ongoing projects, you've got this. We're here to
+        help you stay focused and productive. Let’s make today a productive one!
+      </p>
+    </div>
+  </div>
 </div>

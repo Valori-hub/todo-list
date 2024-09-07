@@ -34,6 +34,10 @@ export class HomeService {
     this.storageService.removeItem('userData');
     window.location.reload();
   }
+  removeElement(element: any) {
+    delete this.userData.todo[element];
+    console.log(this.userData);
+  }
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogTodoComponent, {
       data: {

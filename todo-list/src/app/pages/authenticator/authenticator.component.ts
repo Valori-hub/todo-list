@@ -3,13 +3,14 @@ import { Router, RouterOutlet } from '@angular/router';
 import { HttpService } from '../../http-service.service';
 import { SignUpComponent } from '../../components/sign-up-component/sign-up-conmponent.component';
 import { SignInComponent } from '../../components/sign-in-component/sign-in-conmponent.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-authenticator',
   standalone: true,
   templateUrl: './authenticator.component.html',
   styleUrl: './authenticator.component.scss',
-  imports: [RouterOutlet, SignUpComponent, SignInComponent],
+  imports: [RouterOutlet, SignUpComponent, SignInComponent, CommonModule],
 })
 export class AuthenticatorComponent {
   constructor(private router: Router) {
@@ -23,5 +24,8 @@ export class AuthenticatorComponent {
         },
       },
     ]);
+  }
+  isRouteActive(route: string): boolean {
+    return this.router.url === route;
   }
 }
