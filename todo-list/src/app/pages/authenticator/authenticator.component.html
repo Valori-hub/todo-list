@@ -14,5 +14,16 @@
         help you stay focused and productive. Let’s make today a productive one!
       </p>
     </div>
+    <div
+      class="text-container"
+      *ngIf="isRouteActive('/authenticator/register')"
+    >
+      <h1>Welcome to Todoist!</h1>
+      <p>
+        We’re excited to help you stay organized and achieve your goals. Whether
+        you're managing daily tasks or planning long-term projects, you’re in
+        the right place.
+      </p>
+    </div>
   </div>
 </div>

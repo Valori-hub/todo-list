@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
+import { DialogService } from './dialog.service';
+import * as model from './model';
 @Component({
   selector: 'app-dialog-todo',
   standalone: true,
@@ -10,11 +11,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class DialogTodoComponent {
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<DialogTodoComponent>
-  ) {}
+    @Inject(MAT_DIALOG_DATA) public data: model.Ilist,
 
-  onClose(): void {
-    this.dialogRef.close(DialogTodoComponent);
-  }
+    public DialogService: DialogService
+  ) {}
 }

@@ -1,0 +1,26 @@
+Add a quick task => 
+otwiera okno dialogowe z inputami:
+-tytułu zadania
+-krótkiego opisu zadania
+-czasu zadania
+po utworzeniu przypisuje dane zadanie automatycznie do Unassigned tasks 
+
+Create a new task =>
+otwiera okno dialogowe z inputami:
+-tytułu zadania
+-krótkiego opisu zadania
+-czasu zadania
+-wyborem listy do której zadanie ma być przypisane (wybór będzie brany z local data w celu zniwelowania dużej ilości zapytań do serwera)
+-stopień ważności danego zadania
+
+
+Create a list => Tworzy okno dialogowe z inputami:
+-tytułu listy
+-krótkiego opisu listy
+-wyborem koloru listy 
+po utworzeniu zapisuje się w local data
+
+
+Wylogowanie powoduje nadpisanie stanu bazy użytkownika 
+
+

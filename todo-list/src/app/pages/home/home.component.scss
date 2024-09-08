@@ -1,8 +1,12 @@
+$primary: #050f0b;
+$secondary: #0e9060;
+$white: #e2d7c9;
+$accent: #17b57b;
 .main {
   height: 100vh;
   width: 100vw;
   display: flex;
-  background-color: rgb(239, 216, 243);
+  background-color: $primary;
   > .side-bar {
     width: 25vw;
     height: 100%;
@@ -10,7 +14,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    background-color: rgb(255, 232, 255);
+    background-color: #89ebc7;
     > .logo-section {
       height: 15%;
       width: 100%;
@@ -18,7 +22,7 @@
       align-items: center;
       justify-content: center;
       > h1 {
-        color: #ed65ad;
+        color: $primary;
         font-family: "Merienda", cursive;
         font-optical-sizing: auto;
         font-weight: 900;
@@ -32,7 +36,7 @@
       align-items: center;
       justify-content: center;
       > span {
-        color: #af6f91;
+        color: $primary;
         font-family: "Grandstander", cursive;
         font-size: 3rem;
         font-optical-sizing: auto;
@@ -58,7 +62,7 @@
           display: flex;
           width: 85%;
           height: auto;
-          color: #94607c;
+          color: $primary;
           font-family: "Comic Neue", cursive;
           font-weight: 600;
           font-style: normal;
@@ -76,6 +80,7 @@
             > svg,
             .icon {
               margin: 10px;
+              fill: $primary;
             }
           }
           > .list_delate {
@@ -84,16 +89,16 @@
           }
         }
         > .option:hover {
-          background-color: #ed65ad;
-          color: antiquewhite;
+          background-color: $accent;
+          color: #e2d7c9;
           > .left-container {
             > svg {
-              fill: antiquewhite;
+              fill: $white;
               opacity: 100;
             }
           }
           .list_delate {
-            fill: antiquewhite;
+            fill: $white;
             opacity: 100;
           }
         }
@@ -106,13 +111,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #af6f91;
+      color: $primary;
       cursor: pointer;
       transition: 0.5s;
     }
     > .logout-footer:hover {
-      color: beige;
-      background-color: #d7373aa8;
+      color: $white;
+      background-color: #d7373aca;
     }
   }
 }

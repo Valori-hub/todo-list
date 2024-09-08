@@ -68,8 +68,6 @@ export class SignUpComponent {
       Validators.required,
       this.validatePasswordConfirmation,
     ]),
-    firstName: new FormControl<string>('', [Validators.required]),
-    lastName: new FormControl<string>('', [Validators.required]),
     todo: new FormControl<{}[]>([{ name: 'Unassigned tasks', tasks: [] }], []),
   });
   goToLogin() {

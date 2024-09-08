@@ -1,39 +1,43 @@
-<div class="signup-page">
-  <div class="header">Sign up</div>
+<div class="login-page">
+  <div class="header"><span>Sign up</span></div>
   <form [formGroup]="registrationForm">
     <div class="card-container">
       <div class="form__group field">
         <input
-          placeholder="Username"
           [formControl]="registrationForm.controls.username"
+          type="input"
+          autocomplete="off"
+          class="form__field"
+          placeholder="Username"
+          name="username"
+          id="username"
           required
         />
-
+        <label for="username" class="form__label">Username</label>
+      </div>
+      <div class="form__group field">
         <input
           [formControl]="registrationForm.controls.email"
-          placeholder="pat@example.com"
-          (blur)="updateErrorMessage()"
+          type="input"
+          autocomplete="off"
+          class="form__field"
+          placeholder="E-mail"
+          name="email"
+          id="email"
+          required
         />
-        <mat-error style="color: brown">{{ errorMessage }}</mat-error>
-      </div>
-
-      <div class="personal-details_container">
-        <div class="form__group field">
-          <input
-            placeholder="Name"
-            [formControl]="registrationForm.controls.firstName"
-          />
-          <input
-            placeholder="Last name"
-            [formControl]="registrationForm.controls.lastName"
-          />
-        </div>
+        <label for="email" class="form__label">E-mail</label>
       </div>
       <div class="form__group field">
         <input
-          placeholder="Password"
           [type]="hide ? 'password' : 'text'"
+          autocomplete="off"
           [formControl]="registrationForm.controls.password"
+          class="form__field"
+          placeholder="Password"
+          name="password"
+          id="password"
+          required
         />
         <div class="icon">
           <button
@@ -46,12 +50,18 @@
             <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
           </button>
         </div>
+        <label for="password" class="form__label">Password</label>
       </div>
       <div class="form__group field">
         <input
-          placeholder="Password"
           [type]="hide ? 'password' : 'text'"
+          autocomplete="off"
           [formControl]="registrationForm.controls.confirmPassword"
+          class="form__field"
+          placeholder="Password"
+          name="confirm_password"
+          id="confirm_password"
+          required
         />
         <div class="icon">
           <button
@@ -64,17 +74,25 @@
             <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
           </button>
         </div>
+        <label for="confirm_password" class="form__label"
+          >Confirm Password</label
+        >
+      </div>
+      <div class="button-section">
+        <button type="submit" (click)="register()">Log in</button>
+        <a (click)="goToLogin()">Sign up</a>
       </div>
     </div>
   </form>
-  <div class="submit-button-container">
-    <button
-      type="submit"
-      [disabled]="!registrationForm.valid"
-      (click)="register()"
-    >
-      Create
-    </button>
-    <span (click)="goToLogin()">Log in</span>
-  </div>
 </div>
+<!-- <div class="form__group field">
+  <input
+    type="input"
+    class="form__field"
+    placeholder="Name"
+    name="name"
+    id="name"
+    required
+  />
+  <label for="name" class="form__label">Name</label>
+</div> -->

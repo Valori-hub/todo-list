@@ -2,22 +2,26 @@ $primary: #050f0b;
 $secondary: #0e9060;
 $white: #fff;
 $accent: #09f69f;
-.signup-page {
+.login-page {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   > .header {
+    font-weight: bold;
     font-size: 5rem;
-    font-weight: 500;
     color: $primary;
     width: 100%;
-    height: 25%;
+    height: 30%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   > form {
     width: 100%;
-    height: 55%;
+    height: 50%;
     > .card-container {
       height: 100%;
       width: 100%;
@@ -26,98 +30,28 @@ $accent: #09f69f;
       display: flex;
       flex-direction: column;
       align-items: center;
-      > .username-container {
-        width: 100%;
+      > .button-section {
         display: flex;
+        justify-content: space-around;
+        align-items: center;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        > input {
-          background-color: #ecc9db;
-          border-radius: 20px;
+        height: 30%;
+        width: 100%;
+        > button {
+          color: white;
+          background-color: $secondary;
           border: none;
+          border-radius: 30px;
           height: 60px;
-          width: 60%;
-          margin: 10px 0 10px 0;
-          padding: 0 50px 0 20px;
+          width: 30%;
+          cursor: pointer;
         }
-      }
-      > .personal-details_container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        > .inputs-container {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          width: 68%;
-          > input {
-            background-color: #ecc9db;
-            border-radius: 20px;
-            border: none;
-            height: 60px;
-            width: 35%;
-            margin: 10px 0 10px 0;
-            padding: 0 50px 0 20px;
-          }
-        }
-      }
-      > .password-container {
-        margin: 10px 0 10px 0;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        > .icon {
-          height: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: end;
-          position: relative;
-          > button {
-            position: absolute;
-          }
+        > a {
+          cursor: pointer;
         }
       }
     }
   }
-  > .submit-button-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 20%;
-    color: white;
-    > span {
-      cursor: pointer;
-      text-decoration: underline;
-    }
-    > button {
-      margin: 10px 0 10px 0;
-      height: 40px;
-      border-radius: 40px;
-      width: 20%;
-      background-color: #5c1c43;
-      border: none;
-      color: white;
-      cursor: pointer;
-    }
-    > button:disabled {
-      background-color: #808080;
-      cursor: default;
-    }
-  }
-}
-input {
-  background-color: #ecc9db;
-  border-radius: 20px;
-  border: none;
-  height: 60px;
-  width: 60%;
-  padding: 0 50px 0 20px;
 }
 
 .form__group {
