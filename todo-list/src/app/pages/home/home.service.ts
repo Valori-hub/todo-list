@@ -5,6 +5,8 @@ import { authService } from '../../auth-service.service';
 import { DialogTodoComponent } from '../../components/dialog-todo/dialog-todo.component';
 import { StorageService } from '../../storage-service.service';
 import { HttpService } from '../../http-service.service';
+import { Title } from '@angular/platform-browser';
+import { DialogRef } from '@angular/cdk/dialog';
 
 @Injectable({
   providedIn: 'root',
@@ -35,23 +37,34 @@ export class HomeService {
     window.location.reload();
   }
   removeElement(element: any) {
-    delete this.userData.todo[element];
+    this.userData.todo.splice(element, 1);
     console.log(this.userData);
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogTodoComponent, {});
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
+      if (this.userData.todo.length < this.maxLists) {
+        this.userData.todo.push({
+          name: result.title,
+          description: result.description,
+          tasks: result.tasks,
+        });
+        this.storageService.setItem('userData', this.userData);
+        console.log(this.userData);
+      } else {
+        console.log('You can have only 4 lists on basic plan');
+      }
     });
   }
-  test() {
-    if (this.userData.todo.length < this.maxLists) {
-      this.userData.todo.push([]);
-      this.storageService.setItem('userData', this.userData);
-      console.log(this.userData);
-    } else {
-      console.log('You can have only 4 lists on basic plan');
-    }
-  }
+  // test() {
+  //   if (this.userData.todo.length < this.maxLists) {
+  //     this.userData.todo.push([]);
+  //     this.storageService.setItem('userData', this.userData);
+  //     console.log(this.userData);
+  //     this.dialog.closeAll();
+  //   } else {
+  //     console.log('You can have only 4 lists on basic plan');
+  //   }
+  // }
 }

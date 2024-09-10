@@ -1,30 +1,37 @@
-<h1 mat-dialog-title>Create a new task</h1>
-<div mat-dialog-content>
-  <div class="form__group field">
-    <input
-      type="input"
-      autocomplete="off"
-      class="form__field"
-      placeholder="Title"
-      name="title"
-      id="title"
-      required
-    />
-    <label for="title" class="form__label">Title</label>
-  </div>
-  <div class="form__group field">
-    <input
-      type="input"
-      autocomplete="off"
-      class="form__field"
-      placeholder="Description"
-      name="description"
-      id="description"
-      required
-    />
-    <label for="description" class="form__label">Description</label>
-  </div>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="submitData()">Close</button>
+<div class="login-page">
+  <div class="header"><span>Create a new list</span></div>
+  <form [formGroup]="listForm">
+    <div class="card-container">
+      <div class="form__group field">
+        <input
+          [formControl]="listForm.controls.title"
+          type="input"
+          autocomplete="off"
+          class="form__field"
+          placeholder="title"
+          name="title"
+          id="title"
+        />
+        <label for="title" class="form__label">Title</label>
+      </div>
+      <div class="form__group field">
+        <input
+          [formControl]="listForm.controls.description"
+          autocomplete="off"
+          class="form__field"
+          placeholder="description"
+          name="description"
+          id="description"
+        />
+        <label for="description" class="form__label">Description</label>
+      </div>
+      <div class="form__group field">
+        <input type="color" id="color" />
+        <label for="color">Choose color</label>
+      </div>
+      <div class="button-section">
+        <button type="button" (click)="submitData()">Create</button>
+      </div>
+    </div>
+  </form>
 </div>
