@@ -39,15 +39,10 @@ export class HomeService {
     console.log(this.userData);
   }
   openDialog(): void {
-    const dialogRef = this.dialog.open(DialogTodoComponent, {
-      data: {
-        name: 'John Doe',
-        email: 'john.doe@example.com',
-      },
-    });
+    const dialogRef = this.dialog.open(DialogTodoComponent, {});
 
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result.name);
+      console.log(result);
     });
   }
   test() {
