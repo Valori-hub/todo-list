@@ -7,6 +7,7 @@ import { StorageService } from '../../storage-service.service';
 import { HttpService } from '../../http-service.service';
 import { Title } from '@angular/platform-browser';
 import { DialogRef } from '@angular/cdk/dialog';
+import { Ilist } from '../../components/dialog-todo/model';
 
 @Injectable({
   providedIn: 'root',
@@ -43,7 +44,7 @@ export class HomeService {
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogTodoComponent, {});
 
-    dialogRef.afterClosed().subscribe((result) => {
+    dialogRef.afterClosed().subscribe((result: Ilist) => {
       if (this.userData.todo.length < this.maxLists) {
         this.userData.todo.push({
           name: result.title,

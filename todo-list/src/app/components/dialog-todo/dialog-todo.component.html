@@ -12,6 +12,12 @@
           name="title"
           id="title"
         />
+        <label
+          *ngIf="listForm.controls.title.invalid"
+          for="title"
+          class="form__label"
+          >Title is required</label
+        >
         <label for="title" class="form__label">Title</label>
       </div>
       <div class="form__group field">
@@ -25,9 +31,15 @@
         />
         <label for="description" class="form__label">Description</label>
       </div>
+
       <div class="form__group field">
         <input type="color" id="color" />
         <label for="color">Choose color</label>
+      </div>
+      <div class="form__group field">
+        <input type="list" id="icon" />
+        <label for="icon">Choose icon</label>
+        <app-icon iconName="briefcase-svgrepo-com"></app-icon>
       </div>
       <div class="button-section">
         <button type="button" (click)="submitData()">Create</button>
