@@ -1,12 +1,13 @@
-$primary: #050f0b;
+$primary: #05100b;
 $secondary: #0e9060;
 $white: #e2d7c9;
-$accent: #17b57b;
+$accent: #4dba8e;
 .main {
   height: 100vh;
   width: 100vw;
   display: flex;
-  background-color: $primary;
+  background-color: #1c3b2d;
+  border: 30px;
   > .side-bar {
     width: 25vw;
     height: 100%;
@@ -14,7 +15,9 @@ $accent: #17b57b;
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    background-color: #89ebc7;
+    background-color: $primary;
+    border-right: 2px solid #1b4731;
+
     > .logo-section {
       height: 15%;
       width: 100%;
@@ -22,7 +25,7 @@ $accent: #17b57b;
       align-items: center;
       justify-content: center;
       > h1 {
-        color: $primary;
+        color: $accent;
         font-family: "Merienda", cursive;
         font-optical-sizing: auto;
         font-weight: 900;
@@ -36,7 +39,7 @@ $accent: #17b57b;
       align-items: center;
       justify-content: center;
       > span {
-        color: $primary;
+        color: $secondary;
         font-family: "Grandstander", cursive;
         font-size: 3rem;
         font-optical-sizing: auto;
@@ -62,7 +65,7 @@ $accent: #17b57b;
           display: flex;
           width: 85%;
           height: auto;
-          color: $primary;
+          color: $accent;
           font-family: "Comic Neue", cursive;
           font-weight: 600;
           font-style: normal;
@@ -80,7 +83,7 @@ $accent: #17b57b;
             > svg,
             .icon {
               margin: 10px;
-              fill: $primary;
+              fill: $accent;
             }
           }
           > .list_delate {

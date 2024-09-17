@@ -2,55 +2,43 @@ $primary: #050f0b;
 $secondary: #0e9060;
 $white: #fff;
 $accent: #09f69f;
-.login-page {
-  padding: 20px;
-  width: 100%;
-  height: 100%;
+.dialog-container {
+  padding: 20px 0px;
+  overflow: hidden;
+  width: 580px;
+  height: 320px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  > .header {
-    font-weight: bold;
-    font-size: 5rem;
-    color: $primary;
-    width: 100%;
-    height: 30%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  background-color: #030e08;
+  border: 3px solid hsl(158, 24%, 18%);
   > form {
-    width: 100%;
-    height: 50%;
-    > .card-container {
+    width: 95%;
+    > .form-container {
       height: 100%;
       width: 100%;
-      background-color: transparent;
-      border-radius: 50px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      > .button-section {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-direction: column;
-        height: 30%;
-        width: 100%;
-        > button {
-          color: white;
-          background-color: $secondary;
-          border: none;
-          border-radius: 30px;
-          height: 60px;
-          width: 30%;
-          cursor: pointer;
-        }
-        > a {
-          cursor: pointer;
-        }
-      }
+    }
+  }
+  > .button-section {
+    border-top: 3px solid #233931;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 50%;
+    width: 100%;
+    > button {
+      color: white;
+      background-color: $secondary;
+      border: none;
+      border-radius: 30px;
+      height: 60px;
+      width: 30%;
+      cursor: pointer;
     }
   }
 }
@@ -60,7 +48,7 @@ $accent: #09f69f;
   position: relative;
   padding: 15px 0 0;
   margin-top: 10px;
-  width: 65%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: end;
@@ -80,7 +68,7 @@ $accent: #09f69f;
   font-family: inherit;
   width: 100%;
   border: 0;
-  border-bottom: 2px solid gray;
+  border-bottom: 2px solid #4e6a5f;
   outline: 0;
   font-size: 1.3rem;
   color: $white;
@@ -93,7 +81,7 @@ $accent: #09f69f;
   }
 
   &:placeholder-shown ~ .form__label {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     cursor: text;
     top: 20px;
   }
@@ -105,7 +93,7 @@ $accent: #09f69f;
   display: block;
   transition: 0.2s;
   font-size: 1rem;
-  color: gray;
+  color: #6a9282;
 }
 
 .form__field:focus {
@@ -115,13 +103,13 @@ $accent: #09f69f;
     display: block;
     transition: 0.2s;
     font-size: 1rem;
-    color: $secondary;
+    color: #4e6a5f;
     font-weight: 700;
   }
   padding-bottom: 6px;
   font-weight: 700;
   border-width: 3px;
-  border-image: linear-gradient(to right, $secondary, $primary);
+  border-color: #4e6a5f;
   border-image-slice: 1;
 }
 /* reset input */

@@ -1,7 +1,6 @@
-<div class="login-page">
-  <div class="header"><span>Create a new list</span></div>
+<div class="dialog-container">
   <form [formGroup]="listForm">
-    <div class="card-container">
+    <div class="form-container">
       <div class="form__group field">
         <input
           [formControl]="listForm.controls.title"
@@ -31,19 +30,13 @@
         />
         <label for="description" class="form__label">Description</label>
       </div>
-
-      <div class="form__group field">
-        <input type="color" id="color" />
-        <label for="color">Choose color</label>
-      </div>
-      <div class="form__group field">
-        <input type="list" id="icon" />
-        <label for="icon">Choose icon</label>
-        <app-icon iconName="briefcase-svgrepo-com"></app-icon>
-      </div>
-      <div class="button-section">
-        <button type="button" (click)="submitData()">Create</button>
-      </div>
     </div>
   </form>
+  <div class="button-section">
+    <div class="form__group field">
+      <input type="color" id="color" />
+      <label for="color">Choose color</label>
+    </div>
+    <button type="button" (click)="submitData()">Create a list</button>
+  </div>
 </div>
