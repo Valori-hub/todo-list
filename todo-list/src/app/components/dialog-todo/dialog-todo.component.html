@@ -33,10 +33,16 @@
     </div>
   </form>
   <div class="button-section">
-    <div class="form__group field">
-      <input type="color" id="color" />
-      <label for="color">Choose color</label>
-    </div>
-    <button type="button" (click)="submitData()">Create a list</button>
+    <input type="color" id="color" class="selectors" />
+    <!-- <label for="color">Choose color</label> -->
+
+    <button class="selectors" (click)="openIconPicker()">
+      Select your icon
+    </button>
+  </div>
+  <div class="submit_btn_container">
+    <button type="button" (click)="submitData()" class="submit_btn">
+      Create
+    </button>
   </div>
 </div>

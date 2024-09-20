@@ -10,10 +10,10 @@ import { SafeResourceUrl } from '@angular/platform-browser';
 export class IconComponent implements OnInit {
   @Input() iconName!: string;
   iconUrl: SafeResourceUrl | undefined;
-
   constructor(private svgIconService: SvgIconService) {}
 
   ngOnInit(): void {
+    this.svgIconService.getAllIcons();
     this.svgIconService
       .getIcon(this.iconName)
       .subscribe((url: SafeResourceUrl) => {

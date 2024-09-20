@@ -8,10 +8,18 @@ import { map, catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class SvgIconService {
+  allIcons: string[] = [];
   private cache: Map<string, SafeResourceUrl> = new Map();
 
   constructor(private sanitizer: DomSanitizer, private http: HttpClient) {}
+  getAllIcons() {
+    for (let i = 0; i < 10; i++) {
+      const iconPath = `assets/svg_list_icons/${i}.svg`;
+      this.allIcons.push(iconPath);
+      console.log(this.allIcons);
+    }
 
+  }
   getIcon(iconName: string): Observable<SafeResourceUrl> {
     const cachedIcon = this.cache.get(iconName);
     if (cachedIcon) {

@@ -8,6 +8,7 @@ import { HttpService } from '../../http-service.service';
 import { Title } from '@angular/platform-browser';
 import { DialogRef } from '@angular/cdk/dialog';
 import { Ilist } from '../../components/dialog-todo/model';
+import { IconPickerComponent } from '../../components/icon-picker/icon-picker.component';
 
 @Injectable({
   providedIn: 'root',
@@ -40,6 +41,11 @@ export class HomeService {
   removeElement(element: any) {
     this.userData.todo.splice(element, 1);
     console.log(this.userData);
+  }
+  openIconPicker(): void {
+    const dialogRef = this.dialog.open(IconPickerComponent, {
+      width: '400px',
+    });
   }
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogTodoComponent, {});
