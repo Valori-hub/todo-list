@@ -10,3 +10,9 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+.custom-dialog {
+  mat-dialog-container,
+  .mat-mdc-dialog-container .mdc-dialog__surface {
+    background-color: transparent;
+  }
+}

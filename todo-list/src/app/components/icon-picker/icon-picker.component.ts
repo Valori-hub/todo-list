@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HomeService } from '../../pages/home/home.service';
+import { SafeHtml } from '@angular/platform-browser';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 @Component({
   standalone: true,
   selector: 'app-icon-selector',
@@ -9,11 +12,17 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, FormsModule],
 })
 export class IconPickerComponent {
-  icons = [{ src: 'test' }, { src: 'test1' }];
-  selectedIcon: any;
+  constructor(
+    private homeService: HomeService,
+    private dialogRef: MatDialogRef<IconPickerComponent>
+  ) {}
+  iconList: { filename: string; content: SafeHtml }[] =
+    this.homeService.iconList;
 
-  selectIcon(icon: any) {
-    this.selectedIcon = icon;
-    console.log('Selected icon:', icon);
+  selectedIcon(icon: any) {
+    if (icon) {
+      this.dialogRef.close(icon);
+      console.log(icon);
+    }
   }
 }

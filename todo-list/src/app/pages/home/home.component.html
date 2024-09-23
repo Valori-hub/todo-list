@@ -22,7 +22,7 @@
             <span>Add a quick task</span>
           </div>
         </div>
-        <div class="option" (click)="homeService.openDialog()">
+        <div class="option" (click)="homeService.openListDialog()">
           <div class="left-container">
             <svg
               class="icon"
@@ -45,7 +45,7 @@
           *ngFor="let list of homeService.userData.todo; let i = index"
         >
           <div class="left-container">
-            <span class="icon"> #</span>
+            <div *ngIf="list.icon" class="icon" [innerHTML]="list.icon"></div>
             <span>{{ list.name }}</span>
           </div>
           <svg

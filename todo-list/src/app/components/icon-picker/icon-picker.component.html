@@ -1,9 +1,9 @@
 <div class="icon-selector">
-  <div class="icon-grid">
-    <div
-      *ngFor="let icon of icons"
-      (click)="selectIcon(icon)"
-      class="icon-item"
-    ></div>
+  <div
+    class="icon-container"
+    *ngFor="let icon of iconList"
+    (click)="selectedIcon(icon)"
+  >
+    <div class="icon-item" [innerHTML]="icon.content"></div>
   </div>
 </div>

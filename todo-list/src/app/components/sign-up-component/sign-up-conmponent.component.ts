@@ -19,6 +19,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { CommonModule } from '@angular/common';
+import { HomeService } from '../../pages/home/home.service';
 @Component({
   selector: 'app-sign-up',
   standalone: true,
@@ -68,7 +69,14 @@ export class SignUpComponent {
       Validators.required,
       this.validatePasswordConfirmation,
     ]),
-    todo: new FormControl<{}[]>([{ name: 'Unassigned tasks', tasks: [] }], []),
+    todo: new FormControl<{}[]>([
+      {
+        title: 'Unassigned tasks',
+        desription: '',
+        icon: null,
+        tasks: [],
+      },
+    ]),
   });
   goToLogin() {
     this.router.navigate(['/authenticator/login']);
@@ -78,7 +86,11 @@ export class SignUpComponent {
       ? 'Passwords do not match'
       : 'Confirm your password';
   }
-  constructor(private httpClient: HttpService, private router: Router) {
+  constructor(
+    private httpClient: HttpService,
+    private homeService: HomeService,
+    private router: Router
+  ) {
     merge(
       this.registrationForm.controls.email.statusChanges,
       this.registrationForm.controls.email.valueChanges

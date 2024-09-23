@@ -80,8 +80,7 @@ $accent: #4dba8e;
             display: flex;
             justify-content: center;
             align-items: center;
-            > svg,
-            .icon {
+            > svg {
               margin: 10px;
               fill: $accent;
             }

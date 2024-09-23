@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { authService } from '../../auth-service.service';
-import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
 import { MatDialogModule } from '@angular/material/dialog';
-import { DialogTodoComponent } from '../../components/dialog-todo/dialog-todo.component';
 import { MatIconModule } from '@angular/material/icon';
-import { StorageService } from '../../storage-service.service';
 import { CommonModule } from '@angular/common';
 import { HomeService } from './home.service';
+import { SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +19,7 @@ export class HomeComponent implements OnInit {
   }
   private async InitComponent() {
     this.homeService.getSessionData();
+    this.homeService.getIcons();
     this.homeService.getUserData();
   }
 }

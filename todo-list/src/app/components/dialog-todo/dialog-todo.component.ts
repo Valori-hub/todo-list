@@ -1,29 +1,27 @@
-import { Component, NgModule } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { HomeService } from '../../pages/home/home.service';
+import { Component } from '@angular/core';
 import {
-  FormGroup,
   FormControl,
-  Validators,
+  FormGroup,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
-import { IconComponent } from '../../app-icon/app-icon.component';
 import { CommonModule } from '@angular/common';
+import { DialogService } from './dialog.service';
+import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { HomeService } from '../../pages/home/home.service';
 import { IconPickerComponent } from '../icon-picker/icon-picker.component';
 
 @Component({
   selector: 'app-dialog-todo',
   standalone: true,
-  imports: [
-    IconComponent,
-    ReactiveFormsModule,
-    CommonModule,
-    IconPickerComponent,
-  ],
+  imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './dialog-todo.component.html',
   styleUrl: './dialog-todo.component.scss',
 })
 export class DialogTodoComponent {
+  defultIcon = this.homeService.iconList.find(
+    ({ filename }) => filename === 'star-sharp-svgrepo-com.svg'
+  );
   listForm = new FormGroup({
     title: new FormControl<string>('', [
       Validators.required,
@@ -31,15 +29,22 @@ export class DialogTodoComponent {
     ]),
     description: new FormControl<string>(''),
     color: new FormControl(),
-    icon: new FormControl(),
+    icon: new FormControl(this.defultIcon),
     tasks: new FormControl<[]>([]),
   });
   constructor(
     public homeService: HomeService,
-    public dialogRef: MatDialogRef<DialogTodoComponent>
+    public dialogRef: MatDialogRef<DialogTodoComponent>,
+    private dialog: MatDialog
   ) {}
   openIconPicker(): void {
-    this.homeService.openIconPicker();
+    const dialogRef = this.dialog.open(IconPickerComponent, {
+      panelClass: 'custom-dialog',
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      this.defultIcon = result;
+      this.listForm.get('icon')?.setValue(this.defultIcon);
+    });
   }
   submitData(): void {
     if (this.listForm.valid) {

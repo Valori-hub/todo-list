@@ -12,7 +12,9 @@ interface SessionInfo {
 export class HttpService {
   private url = 'http://localhost:3000/';
   constructor(private http: HttpClient) {}
-
+  getIcons() {
+    return this.http.get<any>(this.url + 'icons/content');
+  }
   //Posting new user data to the server.
   createUser(user: any) {
     delete user.confirmPassword;
