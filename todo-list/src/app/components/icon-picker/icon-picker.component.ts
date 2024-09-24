@@ -13,11 +13,11 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 })
 export class IconPickerComponent {
   constructor(
-    private homeService: HomeService,
+    public homeService: HomeService,
     private dialogRef: MatDialogRef<IconPickerComponent>
   ) {}
   iconList: { filename: string; content: SafeHtml }[] =
-    this.homeService.iconList;
+    this.homeService.sanitizedIcons;
 
   selectedIcon(icon: any) {
     if (icon) {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -19,7 +19,7 @@ import { IconPickerComponent } from '../icon-picker/icon-picker.component';
   styleUrl: './dialog-todo.component.scss',
 })
 export class DialogTodoComponent {
-  defultIcon = this.homeService.iconList.find(
+  defultIcon = this.homeService.sanitizedIcons.find(
     ({ filename }) => filename === 'star-sharp-svgrepo-com.svg'
   );
   listForm = new FormGroup({
@@ -37,11 +37,13 @@ export class DialogTodoComponent {
     public dialogRef: MatDialogRef<DialogTodoComponent>,
     private dialog: MatDialog
   ) {}
+
   openIconPicker(): void {
     const dialogRef = this.dialog.open(IconPickerComponent, {
       panelClass: 'custom-dialog',
     });
     dialogRef.afterClosed().subscribe((result) => {
+      console.log(result);
       this.defultIcon = result;
       this.listForm.get('icon')?.setValue(this.defultIcon);
     });

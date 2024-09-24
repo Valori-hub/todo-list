@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { contentChild, Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { authService } from '../../auth-service.service';
@@ -9,12 +9,24 @@ import { DomSanitizer, SafeHtml, Title } from '@angular/platform-browser';
 import { DialogRef } from '@angular/cdk/dialog';
 import { Ilist } from '../../components/dialog-todo/model';
 import { IconPickerComponent } from '../../components/icon-picker/icon-picker.component';
-
+// interface Iuser {
+//   username: string;
+//   todo: {
+//     name: string;
+//     description: string;
+//     icon: {
+//       filename: string;
+//       content: SafeHtml;
+//     };
+//   };
+// }
 @Injectable({
   providedIn: 'root',
 })
 export class HomeService {
-  iconList: { filename: string; content: SafeHtml }[] = [];
+  sanitizedIcons: { filename: string; content: SafeHtml }[] = [];
+  iconList: { filename: string; content: string }[] = [];
+  defultIcon: { filename: string; content: SafeHtml }[] = [];
   username: string | null = null;
   userData: any;
   private maxLists: number = 5;
@@ -31,14 +43,7 @@ export class HomeService {
     this.username = this.auth.getUsername();
   }
   getUserData() {
-    let tempUserData = this.storageService.getItem('userData');
-    // if (tempUserData && tempUserData.todo) {
-    //   tempUserData.todo.forEach((element: { icon: { content: SafeHtml } }) => {
-    //     element.icon.content = this.sanitizeSVG(element.icon.content);
-    //     console.log(element);
-    //   });
-    // }
-    this.userData = tempUserData;
+    this.userData = this.storageService.getItem('userData');
     console.log(this.userData);
   }
   //Clearing user session storage and reloading the page
@@ -57,15 +62,23 @@ export class HomeService {
   }
   getIcons() {
     this.http.getIcons().subscribe((results) => {
-      // Sanitize each SVG content before storing it in the iconList
       this.iconList = results.data.map(
         (icon: { filename: string; content: string }) => {
           return {
             filename: icon.filename,
-            content: this.sanitizeSVG(icon.content), // Sanitize each SVG content
+            content: icon.content,
           };
         }
       );
+      this.sanitizedIcons = this.iconList.map(
+        (sanitized: { filename: string; content: SafeHtml }) => {
+          return {
+            filename: sanitized.filename,
+            content: this.sanitizeSVG(sanitized.content),
+          };
+        }
+      );
+      console.log(this.sanitizedIcons);
     });
   }
   openListDialog(): void {
