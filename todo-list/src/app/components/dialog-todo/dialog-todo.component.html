@@ -37,7 +37,7 @@
     <!-- <label for="color">Choose color</label> -->
 
     <button class="selectors" (click)="openIconPicker()">
-      <div [innerHTML]="defultIcon?.content"></div>
+      <div [innerHTML]="defultIcon?.content | safe : 'html'"></div>
     </button>
   </div>
   <div class="submit_btn_container">

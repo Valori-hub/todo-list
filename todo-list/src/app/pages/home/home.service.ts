@@ -24,7 +24,6 @@ import { IconPickerComponent } from '../../components/icon-picker/icon-picker.co
   providedIn: 'root',
 })
 export class HomeService {
-  sanitizedIcons: { filename: string; content: SafeHtml }[] = [];
   iconList: { filename: string; content: string }[] = [];
   defultIcon: { filename: string; content: SafeHtml }[] = [];
   username: string | null = null;
@@ -38,13 +37,13 @@ export class HomeService {
     private http: HttpService,
     private sanitizer: DomSanitizer
   ) {}
+
   async getSessionData() {
     await this.auth.getSessionData();
     this.username = this.auth.getUsername();
   }
   getUserData() {
-    this.userData = this.storageService.getItem('userData');
-    console.log(this.userData);
+    return (this.userData = this.storageService.getItem('userData'));
   }
   //Clearing user session storage and reloading the page
   async logout() {
@@ -56,29 +55,9 @@ export class HomeService {
     this.userData.todo.splice(element, 1);
     console.log(this.userData);
   }
-
-  sanitizeSVG(svgContent: any): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(svgContent);
-  }
   getIcons() {
     this.http.getIcons().subscribe((results) => {
-      this.iconList = results.data.map(
-        (icon: { filename: string; content: string }) => {
-          return {
-            filename: icon.filename,
-            content: icon.content,
-          };
-        }
-      );
-      this.sanitizedIcons = this.iconList.map(
-        (sanitized: { filename: string; content: SafeHtml }) => {
-          return {
-            filename: sanitized.filename,
-            content: this.sanitizeSVG(sanitized.content),
-          };
-        }
-      );
-      console.log(this.sanitizedIcons);
+      this.iconList = results.data;
     });
   }
   openListDialog(): void {

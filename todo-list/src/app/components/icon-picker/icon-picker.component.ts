@@ -4,12 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { HomeService } from '../../pages/home/home.service';
 import { SafeHtml } from '@angular/platform-browser';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { SafePipe } from '../../safe.pipe';
 @Component({
   standalone: true,
   selector: 'app-icon-selector',
   templateUrl: './icon-picker.component.html',
   styleUrls: ['./icon-picker.component.scss'],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, SafePipe],
 })
 export class IconPickerComponent {
   constructor(
@@ -17,7 +18,7 @@ export class IconPickerComponent {
     private dialogRef: MatDialogRef<IconPickerComponent>
   ) {}
   iconList: { filename: string; content: SafeHtml }[] =
-    this.homeService.sanitizedIcons;
+    this.homeService.iconList;
 
   selectedIcon(icon: any) {
     if (icon) {

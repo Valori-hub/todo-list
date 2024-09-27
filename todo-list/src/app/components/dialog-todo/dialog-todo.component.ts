@@ -10,16 +10,17 @@ import { DialogService } from './dialog.service';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { HomeService } from '../../pages/home/home.service';
 import { IconPickerComponent } from '../icon-picker/icon-picker.component';
+import { SafePipe } from '../../safe.pipe';
 
 @Component({
   selector: 'app-dialog-todo',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, SafePipe],
   templateUrl: './dialog-todo.component.html',
   styleUrl: './dialog-todo.component.scss',
 })
 export class DialogTodoComponent {
-  defultIcon = this.homeService.sanitizedIcons.find(
+  defultIcon = this.homeService.iconList.find(
     ({ filename }) => filename === 'star-sharp-svgrepo-com.svg'
   );
   listForm = new FormGroup({

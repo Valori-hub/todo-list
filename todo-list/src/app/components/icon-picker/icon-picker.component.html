@@ -4,6 +4,6 @@
     *ngFor="let icon of iconList"
     (click)="selectedIcon(icon)"
   >
-    <div class="icon-item" [innerHTML]="icon.content"></div>
+    <div class="icon-item" [innerHTML]="icon.content | safe : 'html'"></div>
   </div>
 </div>
