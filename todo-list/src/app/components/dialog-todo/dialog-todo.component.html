@@ -33,11 +33,15 @@
     </div>
   </form>
   <div class="button-section">
-    <input type="color" id="color" class="selectors" />
-    <!-- <label for="color">Choose color</label> -->
-
+    <input
+      type="color"
+      id="color"
+      class="selectors"
+      [formControl]="listForm.controls.color"
+    />
+    <label for="color" style="color: var(--primary-color)">siema</label>
     <button class="selectors" (click)="openIconPicker()">
-      <div [innerHTML]="defultIcon?.content | safe : 'html'"></div>
+      <div class="icon" [innerHTML]="defultIcon?.content | safe : 'html'"></div>
     </button>
   </div>
   <div class="submit_btn_container">

@@ -4,11 +4,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { HomeService } from './home.service';
 import { SafePipe } from '../../safe.pipe';
+import { SideBarComponent } from '../../components/side-bar/side-bar.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [MatDialogModule, MatIconModule, CommonModule, SafePipe],
+  imports: [
+    MatDialogModule,
+    MatIconModule,
+    CommonModule,
+    SafePipe,
+    SideBarComponent,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

@@ -1,7 +1,7 @@
-$primary: #050f0b;
-$secondary: #0e9060;
-$white: #fff;
-$accent: #09f69f;
+// $primary: #050f0b;
+// $secondary: #0e9060;
+// $white: #fff;
+// $accent: #09f69f;
 .login-page {
   width: 100%;
   height: 100%;
@@ -12,7 +12,7 @@ $accent: #09f69f;
   > .header {
     font-weight: bold;
     font-size: 5rem;
-    color: $primary;
+    color: var(--primary);
     width: 100%;
     height: 30%;
     display: flex;
@@ -39,7 +39,7 @@ $accent: #09f69f;
         width: 100%;
         > button {
           color: white;
-          background-color: $secondary;
+          background-color: var(--secondary);
           border: none;
           border-radius: 30px;
           height: 60px;
@@ -82,7 +82,7 @@ $accent: #09f69f;
   border-bottom: 2px solid gray;
   outline: 0;
   font-size: 1.3rem;
-  color: $white;
+  color: var(--white);
   padding: 7px 0;
   background: transparent;
   transition: border-color 0.2s;
@@ -114,13 +114,13 @@ $accent: #09f69f;
     display: block;
     transition: 0.2s;
     font-size: 1rem;
-    color: $secondary;
+    color: var(--secondary);
     font-weight: 700;
   }
   padding-bottom: 6px;
   font-weight: 700;
   border-width: 3px;
-  border-image: linear-gradient(to right, $secondary, $primary);
+  border-image: linear-gradient(to right, var(--secondary), var(--primary));
   border-image-slice: 1;
 }
 /* reset input */

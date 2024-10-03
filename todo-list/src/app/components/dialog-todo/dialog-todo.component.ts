@@ -1,21 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormControl,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { DialogService } from './dialog.service';
 import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { HomeService } from '../../pages/home/home.service';
 import { IconPickerComponent } from '../icon-picker/icon-picker.component';
 import { SafePipe } from '../../safe.pipe';
+import { ColorsService } from '../../colors.service';
 
 @Component({
   selector: 'app-dialog-todo',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, SafePipe],
+  imports: [ReactiveFormsModule, CommonModule, SafePipe, FormsModule],
   templateUrl: './dialog-todo.component.html',
   styleUrl: './dialog-todo.component.scss',
 })
@@ -29,14 +30,15 @@ export class DialogTodoComponent {
       Validators.minLength(3),
     ]),
     description: new FormControl<string>(''),
-    color: new FormControl(),
+    color: new FormControl<string>(this.ColorService.accentColor),
     icon: new FormControl(this.defultIcon),
     tasks: new FormControl<[]>([]),
   });
   constructor(
     public homeService: HomeService,
     public dialogRef: MatDialogRef<DialogTodoComponent>,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private ColorService: ColorsService
   ) {}
 
   openIconPicker(): void {

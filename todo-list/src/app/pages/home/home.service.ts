@@ -34,8 +34,7 @@ export class HomeService {
     private auth: authService,
     private dialog: MatDialog,
     private storageService: StorageService,
-    private http: HttpService,
-    private sanitizer: DomSanitizer
+    private http: HttpService
   ) {}
 
   async getSessionData() {
@@ -71,6 +70,7 @@ export class HomeService {
           name: result.title,
           description: result.description,
           tasks: result.tasks,
+          color: result.color,
           icon: result.icon,
         });
         this.storageService.setItem('userData', this.userData);

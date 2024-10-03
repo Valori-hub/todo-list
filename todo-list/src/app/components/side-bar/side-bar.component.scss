@@ -1,0 +1,122 @@
+$primary: #05100b;
+$secondary: #0e9060;
+$white: #e2d7c9;
+$accent: #4dba8e;
+.side-bar {
+  width: 25vw;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  background-color: var(--primary);
+  border-right: 2px solid #1b4731;
+
+  > .logo-section {
+    height: 15%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > h1 {
+      color: var(--accent);
+      font-family: "Merienda", cursive;
+      font-optical-sizing: auto;
+      font-weight: 900;
+      font-size: 5rem;
+    }
+  }
+  > .user-profile-section {
+    height: 12%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    > span {
+      color: var(--secondary);
+      font-family: "Grandstander", cursive;
+      font-size: 3rem;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+      -webkit-user-select: none; /* Safari */
+      -ms-user-select: none; /* IE 10 and IE 11 */
+      user-select: none; /* Standard syntax */
+      cursor: default;
+    }
+  }
+  > .content-section {
+    height: 75%;
+    width: 100%;
+    > .options-section {
+      height: 35%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      > .option {
+        display: flex;
+        width: 85%;
+        height: auto;
+        color: var(--accent);
+        font-family: "Comic Neue", cursive;
+        font-weight: 600;
+        font-style: normal;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        border-radius: 20px;
+        transition: 0.2s;
+        cursor: pointer;
+        > .left-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          > .icon {
+            width: 40px;
+            height: 40px;
+          }
+          > svg {
+            margin: 10px;
+            fill: var(--accent);
+          }
+        }
+        > .list_delate {
+          opacity: 0;
+          margin-right: 12px;
+        }
+      }
+      > .option:hover {
+        background-color: var(--accent);
+        color: #e2d7c9;
+        > .left-container {
+          > svg {
+            fill: var(--white);
+            opacity: 100;
+          }
+        }
+        .list_delate {
+          fill: var(--white);
+          opacity: 100;
+        }
+      }
+    }
+  }
+  > .logout-footer {
+    font-family: "Roboto";
+    width: 100%;
+    height: 8%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    cursor: pointer;
+    transition: 0.5s;
+  }
+  > .logout-footer:hover {
+    color: var(--white);
+    background-color: #d7373aca;
+  }
+}
