@@ -52,7 +52,7 @@ export class HomeService {
   }
   removeElement(element: any) {
     this.userData.todo.splice(element, 1);
-    console.log(this.userData);
+    this.storageService.setItem('userData', this.userData);
   }
   getIcons() {
     this.http.getIcons().subscribe((results) => {
