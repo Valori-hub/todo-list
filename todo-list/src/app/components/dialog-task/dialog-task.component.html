@@ -1,0 +1,60 @@
+<div class="dialog-container">
+  <form [formGroup]="taskForm">
+    <div class="form-container">
+      <div class="form__group field">
+        <input
+          [formControl]="taskForm.controls.title"
+          type="input"
+          autocomplete="off"
+          class="form__field"
+          placeholder="title"
+          name="title"
+          id="title"
+        />
+        <label
+          *ngIf="taskForm.controls.title.invalid"
+          for="title"
+          class="form__label"
+          >Title is required</label
+        >
+        <label for="title" class="form__label">Title</label>
+      </div>
+      <div class="form__group field">
+        <input
+          [formControl]="taskForm.controls.description"
+          autocomplete="off"
+          class="form__field"
+          placeholder="description"
+          name="description"
+          id="description"
+        />
+        <label for="description" class="form__label">Description</label>
+      </div>
+    </div>
+  </form>
+  <div class="button-section">
+    <input
+      type="color"
+      id="color"
+      class="selectors"
+      [formControl]="taskForm.controls.color"
+    />
+    <input
+      type="date"
+      id="date"
+      class="selectors"
+      [formControl]="taskForm.controls.date"
+    />
+    <input
+      type="time"
+      id="time"
+      class="selectors"
+      [formControl]="taskForm.controls.time"
+    />
+  </div>
+  <div class="submit_btn_container">
+    <button type="button" (click)="submitData()" class="submit_btn">
+      Create
+    </button>
+  </div>
+</div>

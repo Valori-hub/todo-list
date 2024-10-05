@@ -1,14 +1,12 @@
-import { contentChild, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { authService } from '../../auth-service.service';
-import { DialogTodoComponent } from '../../components/dialog-todo/dialog-todo.component';
+import { DialogListComponent } from '../../components/dialog-list/dialog-list.component';
 import { StorageService } from '../../storage-service.service';
 import { HttpService } from '../../http-service.service';
-import { DomSanitizer, SafeHtml, Title } from '@angular/platform-browser';
-import { DialogRef } from '@angular/cdk/dialog';
-import { Ilist } from '../../components/dialog-todo/model';
-import { IconPickerComponent } from '../../components/icon-picker/icon-picker.component';
+import { SafeHtml } from '@angular/platform-browser';
+import { Ilist } from '../../components/dialog-list/model';
+import { DialogTaskComponent } from '../../components/dialog-task/dialog-task.component';
 // interface Iuser {
 //   username: string;
 //   todo: {
@@ -60,7 +58,7 @@ export class HomeService {
     });
   }
   openListDialog(): void {
-    const dialogRef = this.dialog.open(DialogTodoComponent, {
+    const dialogRef = this.dialog.open(DialogListComponent, {
       panelClass: 'custom-dialog',
     });
 
@@ -72,6 +70,25 @@ export class HomeService {
           tasks: result.tasks,
           color: result.color,
           icon: result.icon,
+        });
+        this.storageService.setItem('userData', this.userData);
+        console.log(this.userData);
+      } else {
+        console.log('You can have only 4 lists on basic plan');
+      }
+    });
+  }
+  openTaskDialog(): void {
+    const dialogRef = this.dialog.open(DialogTaskComponent, {
+      panelClass: 'custom-dialog',
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (this.userData.todo.length < this.maxLists) {
+        this.userData.todo.push({
+          name: result.title,
+          description: result.description,
+          color: result.color,
         });
         this.storageService.setItem('userData', this.userData);
         console.log(this.userData);
