@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -27,7 +27,9 @@ import { FlatpickrModule } from 'angularx-flatpickr';
   styleUrl: './dialog-task.component.scss',
 })
 export class DialogTaskComponent {
-  today = new Date().toISOString().split('T')[0];
+  today = new Date();
+  selectedDate: string = this.today.toISOString().substring(0, 10);
+  selectedTime: string = this.today.toISOString().substring(11, 16);
   taskForm = new FormGroup({
     title: new FormControl<string>('', [
       Validators.required,
@@ -35,8 +37,8 @@ export class DialogTaskComponent {
     ]),
     description: new FormControl<string>(''),
     color: new FormControl<string>(this.ColorService.accentColor),
-    date: new FormControl<Date>(new Date()),
-    time: new FormControl<Date>(new Date()),
+    date: new FormControl<string>(this.selectedDate),
+    time: new FormControl<string>(this.selectedTime),
   });
   constructor(
     public homeService: HomeService,
@@ -44,6 +46,7 @@ export class DialogTaskComponent {
     private dialog: MatDialog,
     private ColorService: ColorsService
   ) {}
+
   submitData(): void {
     if (this.taskForm.valid) {
       this.dialogRef.close(this.taskForm.getRawValue());
