@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { HomeService } from '../../pages/home/home.service';
 import { SafePipe } from '../../safe.pipe';
 import { ColorsService } from '../../colors.service';

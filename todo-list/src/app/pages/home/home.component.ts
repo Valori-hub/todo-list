@@ -29,14 +29,18 @@ export class HomeComponent implements OnInit {
   private async InitComponent() {
     this.homeService.getSessionData();
     this.homeService.getIcons();
-    this.userData = this.homeService.getUserData();
+    this.homeService.userData$.subscribe((data) => {
+      this.userData = data;
+      this.updateTasks();
+    });
+  }
+  updateTasks() {
     this.test1 = this.userData.todo[0].tasks;
     this.test1.sort((a: any, b: any) => {
       const dateA = new Date(a.date).getTime();
       const dateB = new Date(b.date).getTime();
       return dateA - dateB;
     });
-    console.log(this.test1);
   }
   test(index: any) {
     console.log(index);

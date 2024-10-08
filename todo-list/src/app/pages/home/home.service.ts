@@ -7,6 +7,7 @@ import { HttpService } from '../../http-service.service';
 import { SafeHtml } from '@angular/platform-browser';
 import { Ilist } from '../../components/dialog-list/model';
 import { DialogTaskComponent } from '../../components/dialog-task/dialog-task.component';
+import { BehaviorSubject } from 'rxjs';
 // interface Iuser {
 //   username: string;
 //   todo: {
@@ -26,6 +27,8 @@ export class HomeService {
   defultIcon: { filename: string; content: SafeHtml }[] = [];
   username: string | null = null;
   userData: any;
+  private userDataSubject = new BehaviorSubject<any>(this.getUserData());
+  userData$ = this.userDataSubject.asObservable();
   private maxLists: number = 5;
 
   constructor(
@@ -41,6 +44,11 @@ export class HomeService {
   }
   getUserData() {
     return (this.userData = this.storageService.getItem('userData'));
+  }
+  updateUserData(newData: any) {
+    this.userData = newData;
+    this.userDataSubject.next(this.userData);
+    this.storageService.setItem('userData', this.userData);
   }
   //Clearing user session storage and reloading the page
   async logout() {
@@ -96,8 +104,7 @@ export class HomeService {
             });
           }
         });
-        this.storageService.setItem('userData', this.userData);
-        console.log(this.userData);
+        this.updateUserData(this.userData);
       }
     });
   }
