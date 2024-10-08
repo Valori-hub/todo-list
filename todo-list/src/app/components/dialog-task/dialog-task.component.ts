@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -11,25 +11,17 @@ import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { HomeService } from '../../pages/home/home.service';
 import { SafePipe } from '../../safe.pipe';
 import { ColorsService } from '../../colors.service';
-import { FlatpickrModule } from 'angularx-flatpickr';
 
 @Component({
   selector: 'app-dialog-task',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    CommonModule,
-    SafePipe,
-    FormsModule,
-    FlatpickrModule,
-  ],
+  imports: [ReactiveFormsModule, CommonModule, SafePipe, FormsModule],
   templateUrl: './dialog-task.component.html',
   styleUrl: './dialog-task.component.scss',
 })
 export class DialogTaskComponent {
   today = new Date();
-  selectedDate: string = this.today.toISOString().substring(0, 10);
-  selectedTime: string = this.today.toISOString().substring(11, 16);
+  selectedDate: string = this.today.toISOString().substring(0, 16);
   taskForm = new FormGroup({
     title: new FormControl<string>('', [
       Validators.required,
@@ -38,12 +30,11 @@ export class DialogTaskComponent {
     description: new FormControl<string>(''),
     color: new FormControl<string>(this.ColorService.accentColor),
     date: new FormControl<string>(this.selectedDate),
-    time: new FormControl<string>(this.selectedTime),
+    list: new FormControl(''),
   });
   constructor(
     public homeService: HomeService,
     public dialogRef: MatDialogRef<DialogTaskComponent>,
-    private dialog: MatDialog,
     private ColorService: ColorsService
   ) {}
 

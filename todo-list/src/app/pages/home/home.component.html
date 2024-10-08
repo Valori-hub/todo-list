@@ -1,4 +1,8 @@
 <div class="main">
   <app-side-bar></app-side-bar>
-  <div class="routing-container">siema</div>
+  <div class="routing-container">
+    <div *ngFor="let task of test1">
+      {{ task.title }}
+    </div>
+  </div>
 </div>

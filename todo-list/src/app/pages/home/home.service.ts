@@ -84,16 +84,20 @@ export class HomeService {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (this.userData.todo.length < this.maxLists) {
-        this.userData.todo.push({
-          name: result.title,
-          description: result.description,
-          color: result.color,
+      if (result.list) {
+        this.userData.todo.map((list: any) => {
+          if (result.list === list.name) {
+            list.tasks.push({
+              title: result.title,
+              description: result.description,
+              color: result.color,
+              date: result.date,
+              list: result.list,
+            });
+          }
         });
         this.storageService.setItem('userData', this.userData);
         console.log(this.userData);
-      } else {
-        console.log('You can have only 4 lists on basic plan');
       }
     });
   }

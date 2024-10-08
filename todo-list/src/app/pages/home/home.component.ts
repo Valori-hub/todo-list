@@ -21,6 +21,7 @@ import { SideBarComponent } from '../../components/side-bar/side-bar.component';
 })
 export class HomeComponent implements OnInit {
   userData: any;
+  test1: any;
   constructor(public homeService: HomeService) {}
   ngOnInit(): void {
     this.InitComponent();
@@ -29,6 +30,13 @@ export class HomeComponent implements OnInit {
     this.homeService.getSessionData();
     this.homeService.getIcons();
     this.userData = this.homeService.getUserData();
+    this.test1 = this.userData.todo[0].tasks;
+    this.test1.sort((a: any, b: any) => {
+      const dateA = new Date(a.date).getTime();
+      const dateB = new Date(b.date).getTime();
+      return dateA - dateB;
+    });
+    console.log(this.test1);
   }
   test(index: any) {
     console.log(index);
