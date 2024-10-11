@@ -1,0 +1,34 @@
+<button (click)="nextDaysGenerator(dates.slice(-1)[0])"></button>
+<table class="table-container">
+  <thead>
+    <tr>
+      <th class="day-row" *ngFor="let date of dates">
+        {{ date.toLocaleDateString() }}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of allTask">
+      <td *ngFor="let date of dates">
+        <div class="task-card" *ngIf="doesTaskMatchDate(task, date)">
+          <div class="header">
+            <span class="task-title">
+              {{ task.title }}
+            </span>
+          </div>
+          <div class="informations">
+            <span class="task-description">
+              {{ task.description }}
+            </span>
+            <span class="task-date">{{
+              task.date.toString().substring(3, 11)
+            }}</span>
+          </div>
+          <div class="footer">
+            <span>{{ task.list }}</span>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

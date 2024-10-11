@@ -1,8 +1,16 @@
 <div class="main">
   <app-side-bar></app-side-bar>
   <div class="routing-container">
-    <div *ngFor="let task of test1">
-      {{ task.title }}
+    <div class="header">Upcoming</div>
+    <div class="calendar-container">
+      <app-calendar></app-calendar>
+    </div>
+    <div class="tasks_container">
+      <div class="task_card" *ngFor="let task of test1">
+        <div class="title_section">
+          {{ task.title }}
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -3,9 +3,32 @@ $secondary: #0e9060;
 $white: #e2d7c9;
 $accent: #4dba8e;
 .main {
+  overflow: hidden;
   height: 100vh;
   width: 100vw;
   display: flex;
-  background-color: #1c3b2d;
+  background-color: var(--secondary);
   border: 30px;
+  > .routing-container {
+    > .header {
+      height: 20%;
+      overflow: hidden;
+    }
+    > .calendar-container {
+      width: 75vw;
+      overflow: auto;
+    }
+    > .calendar-container::-webkit-scrollbar {
+      display: none;
+    }
+    > .tasks_container {
+      overflow: auto;
+      display: flex;
+      height: 80%;
+      > .task_card {
+        height: 200px;
+        width: 300px;
+      }
+    }
+  }
 }

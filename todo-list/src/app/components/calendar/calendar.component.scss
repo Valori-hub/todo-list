@@ -1,0 +1,72 @@
+// table {
+//   width: 100%;
+//   border-collapse: 100%;
+// }
+// .day-row {
+//   padding: 30px;
+//   color: var(--accent);
+//   font-size: 1.2rem;
+// }
+// tr {
+//   border-bottom: 1px solid #ddd;
+// }
+.table-container {
+  width: 100vw;
+  table-layout: fixed;
+  border-collapse: collapse; /* Umożliwia tworzenie linii oddzielających */
+}
+
+.table-container th,
+.table-container td {
+  padding: 12px;
+  align-items: center;
+  border-bottom: 1px solid var(--accent);
+  width: 250px;
+}
+
+.day-row {
+  color: var(--accent);
+  font-size: 1.2rem;
+}
+
+.table-container tbody tr {
+  color: var(--accent);
+  border-bottom: 1px solid #ccc; /* Poziome linie między wierszami */
+}
+
+.table-container tbody tr:last-child {
+  border-bottom: none; /* Usuń linię pod ostatnim wierszem, jeśli niepotrzebna */
+}
+.task-card {
+  -webkit-box-shadow: 0px 7px 10px 4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 7px 10px 4px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 7px 10px 4px rgba(0, 0, 0, 0.75);
+  background-color: var(--primary);
+  width: 90%;
+  height: 90px;
+  border-radius: 15px;
+  margin: auto;
+  border: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  > .header {
+    > .task-title {
+      font-size: x-large;
+      margin-left: 15px;
+    }
+  }
+  > .informations {
+    > .task-description {
+      font-size: large;
+      margin-left: 15px;
+    }
+  }
+  > .footer {
+    font-size: small;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

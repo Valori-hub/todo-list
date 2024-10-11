@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { HomeService } from './home.service';
 import { SafePipe } from '../../safe.pipe';
 import { SideBarComponent } from '../../components/side-bar/side-bar.component';
+import { CalendarComponent } from '../../components/calendar/calendar.component';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +16,7 @@ import { SideBarComponent } from '../../components/side-bar/side-bar.component';
     CommonModule,
     SafePipe,
     SideBarComponent,
+    CalendarComponent,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
@@ -33,6 +35,7 @@ export class HomeComponent implements OnInit {
       this.userData = data;
       this.updateTasks();
     });
+    console.log(this.userData);
   }
   updateTasks() {
     this.test1 = this.userData.todo[0].tasks;

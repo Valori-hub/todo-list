@@ -10,10 +10,9 @@ $accent: #4dba8e;
   align-items: center;
   justify-content: start;
   background-color: var(--primary);
-  border-right: 2px solid #1b4731;
 
   > .logo-section {
-    height: 15%;
+    height: 17%;
     width: 100%;
     display: flex;
     align-items: center;
@@ -24,25 +23,6 @@ $accent: #4dba8e;
       font-optical-sizing: auto;
       font-weight: 900;
       font-size: 5rem;
-    }
-  }
-  > .user-profile-section {
-    height: 12%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    > span {
-      color: var(--secondary);
-      font-family: "Grandstander", cursive;
-      font-size: 3rem;
-      font-optical-sizing: auto;
-      font-weight: 400;
-      font-style: normal;
-      -webkit-user-select: none; /* Safari */
-      -ms-user-select: none; /* IE 10 and IE 11 */
-      user-select: none; /* Standard syntax */
-      cursor: default;
     }
   }
   > .content-section {

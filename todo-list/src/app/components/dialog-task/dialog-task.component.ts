@@ -21,7 +21,7 @@ import { ColorsService } from '../../colors.service';
 })
 export class DialogTaskComponent {
   today = new Date();
-  selectedDate: string = this.today.toISOString().substring(0, 16);
+  selectedDate = this.today.toISOString();
   taskForm = new FormGroup({
     title: new FormControl<string>('', [
       Validators.required,
@@ -29,7 +29,7 @@ export class DialogTaskComponent {
     ]),
     description: new FormControl<string>(''),
     color: new FormControl<string>(this.ColorService.accentColor),
-    date: new FormControl<string>(this.selectedDate),
+    date: new FormControl<string | Date>(this.selectedDate.substring(0, 16)),
     list: new FormControl(''),
   });
   constructor(
@@ -40,7 +40,10 @@ export class DialogTaskComponent {
 
   submitData(): void {
     if (this.taskForm.valid) {
-      this.dialogRef.close(this.taskForm.getRawValue());
+      const formValue = this.taskForm.value;
+      const dateValue = formValue.date ? new Date(formValue.date) : null;
+      formValue.date = dateValue;
+      this.dialogRef.close(formValue);
     }
   }
 }

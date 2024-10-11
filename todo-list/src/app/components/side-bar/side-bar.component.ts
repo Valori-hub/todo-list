@@ -19,9 +19,8 @@ export class SideBarComponent implements OnInit {
   private async InitComponent() {
     this.homeService.getSessionData();
     this.homeService.getIcons();
-    this.userData = this.homeService.getUserData();
-  }
-  test(index: any) {
-    console.log(index);
+    this.homeService.userData$.subscribe((data) => {
+      this.userData = data;
+    });
   }
 }
