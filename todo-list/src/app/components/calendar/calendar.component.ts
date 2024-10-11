@@ -19,6 +19,7 @@ export class CalendarComponent implements OnInit {
     description: string;
     list: string;
   }[] = [];
+
   constructor(private homeService: HomeService) {}
   ngOnInit(): void {
     this.nextDaysGenerator(this.today);
@@ -27,21 +28,24 @@ export class CalendarComponent implements OnInit {
       this.updateAllTasks();
     });
   }
-  doesTaskMatchDate(task: any, date: any): boolean {
-    return (
-      task.date.toString().substring(0, 16) === date.toString().substring(0, 16)
-    );
+  getTasksForDate(date: Date): any[] {
+    return this.allTask
+      .filter((task) => {
+        const taskDate = new Date(task.date);
+        return taskDate.toDateString() === date.toDateString();
+      })
+      .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
   }
   updateAllTasks() {
     this.allTask = [];
     this.userData.todo.forEach((item: any) => {
       if (Array.isArray(item.tasks)) {
         item.tasks.forEach((task: any) => {
-          const taskDate = new Date(task.date); // Konwersja task.date na obiekt Date
-          console.log(taskDate); // Wyświetlenie obiektu Date w konsoli
+          const taskDate = new Date(task.date);
+          console.log(taskDate);
           this.allTask.push({
             ...task,
-            date: taskDate, // Możesz nadpisać datę lub dodać nową właściwość
+            date: taskDate,
           });
         });
       }
