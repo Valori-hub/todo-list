@@ -40,19 +40,13 @@
       [formControl]="taskForm.controls.color"
     />
     <input
-      style="width: 200px"
+      style="width: 160px; text-align: center"
       type="datetime-local"
       id="date"
       class="selectors"
       [formControl]="taskForm.controls.date"
+      (click)="openPicker()"
     />
-
-    <!-- <input
-      type="time"
-      id="time"
-      class="selectors"
-      [formControl]="taskForm.controls.time"
-    /> -->
   </div>
   <div class="submit_btn_container">
     <select [formControl]="taskForm.controls.list">

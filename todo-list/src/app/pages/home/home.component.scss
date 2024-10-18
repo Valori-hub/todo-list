@@ -11,15 +11,21 @@ $accent: #4dba8e;
   border: 30px;
   > .routing-container {
     > .header {
+      display: flex;
+      justify-content: start;
+      align-items: end;
       height: 20%;
+      width: 100%;
+      font-size: 3rem;
       overflow: hidden;
+      color: var(--accent);
+      > span {
+        margin-left: 40px;
+      }
     }
     > .calendar-container {
       width: 75vw;
       overflow: auto;
-    }
-    > .calendar-container::-webkit-scrollbar {
-      display: none;
     }
     > .tasks_container {
       overflow: auto;

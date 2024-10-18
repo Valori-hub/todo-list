@@ -3,17 +3,32 @@
 @import url("https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@0,100..900;1,100..900&family=Merienda:wght@300..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Grandstander:ital,wght@0,100..900;1,100..900&family=Merienda:wght@300..900&display=swap");
 :root {
-  --primary-color: #007bff;
-  // --primary: #05100b;
-  // --secondary: #0e9060;
-  // --white: #e2d7c9;
-  // --accent: #4dba8e;
   --primary: #1d1921;
   --secondary: #151318;
   --white: #e2d7c9;
   --accent: #baa2d2;
   --border: #332a41;
 }
+body {
+  --sb-track-color: #232e33;
+  --sb-thumb-color: #ffa7ed;
+  --sb-size: 7px;
+}
+
+body::-webkit-scrollbar {
+  width: var(--sb-size);
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--sb-track-color);
+  border-radius: 12px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--sb-thumb-color);
+  border-radius: 12px;
+}
+
 html,
 body {
   height: 100%;

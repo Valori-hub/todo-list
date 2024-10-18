@@ -2,9 +2,9 @@
   display: flex;
   width: 100vw;
   height: 100vh;
-  background-color: #050f0b;
+  background-color: var(--secondary);
   > .form-container {
-    background: #89ebc7;
+    background: var(--primary);
     display: flex;
     flex-direction: row;
     height: 100vh;
@@ -24,14 +24,14 @@
     > .text-container {
       width: 65%;
       > h1 {
-        color: #09f69f;
+        color: var(--accent);
         font-size: 6rem;
         margin: 0;
       }
       > p {
         margin-left: 10px;
         font-size: 1rem;
-        color: #1ad18e8b;
+        color: #6d5f7c;
       }
     }
   }

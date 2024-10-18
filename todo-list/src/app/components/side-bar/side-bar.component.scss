@@ -47,14 +47,26 @@ $accent: #4dba8e;
         justify-content: space-between;
         font-size: 1.3rem;
         margin-bottom: 10px;
-        border-radius: 20px;
+        border-radius: 10px;
         transition: 0.2s;
         cursor: pointer;
+        > span {
+          width: 100%;
+          color: var(--accent);
+          display: flex;
+          align-items: center;
+          justify-content: start;
+          margin-left: 10px;
+          font-size: 1.5rem;
+          font-weight: 900;
+        }
         > .left-container {
+          margin-left: 10px;
           display: flex;
           justify-content: center;
           align-items: center;
           > .icon {
+            margin: 10px;
             width: 40px;
             height: 40px;
           }
@@ -70,15 +82,18 @@ $accent: #4dba8e;
       }
       > .option:hover {
         background-color: var(--accent);
-        color: #e2d7c9;
+        color: var(--primary);
+        > .list-header {
+          color: var(--primary);
+        }
         > .left-container {
           > svg {
-            fill: var(--white);
+            fill: var(--primary);
             opacity: 100;
           }
         }
         .list_delate {
-          fill: var(--white);
+          fill: var(--primary);
           opacity: 100;
         }
       }
