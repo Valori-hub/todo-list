@@ -30,8 +30,20 @@
         margin-top: 20px;
         margin-bottom: 20px;
         cursor: pointer;
+        position: relative;
+        > .color {
+          position: absolute;
+          border-radius: 50px;
+          width: 20px;
+          height: 20px;
+          top: 6px;
+          right: 6px;
+        }
         > .header {
+          display: flex;
+
           > .task-title {
+            width: 100%;
             font-size: x-large;
             margin-left: 15px;
           }

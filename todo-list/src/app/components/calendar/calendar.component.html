@@ -1,3 +1,6 @@
+<button (click)="generateDays('previous')">Previous 7 Days</button>
+<input type="date" [(ngModel)]="choosenDate" />
+<button (click)="generateDays('next')">Next 7 Days</button>
 <div class="calendar-container">
   <div class="header-container" *ngFor="let date of dates">
     <div class="header">
@@ -5,6 +8,7 @@
     </div>
     <div class="tasks-container">
       <div *ngFor="let task of getTasksForDate(date)" class="task-card">
+        <div class="color" [ngStyle]="{ 'background-color': task.color }"></div>
         <div class="header">
           <span class="task-title">{{ task.title }}</span>
         </div>
