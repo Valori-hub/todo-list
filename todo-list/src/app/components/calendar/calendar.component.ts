@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 export class CalendarComponent implements OnInit {
   startDate: string = '';
   today = new Date();
-  choosenDate = new Date().toISOString().slice(0, 10);
+  choosenDate: Date = new Date();
   dates: Date[] = [];
   userData: any;
   allTask: {
@@ -55,17 +55,27 @@ export class CalendarComponent implements OnInit {
       }
     });
   }
-  generateDays(action: 'previous' | 'next') {
+
+  generateDays(action: 'previous' | 'next' | 'choose') {
     let start: Date;
-    if (this.dates.length === 0) {
-      start = new Date(this.today);
-    } else {
-      if (action === 'previous') {
+    switch (true) {
+      case this.dates.length === 0:
+        start = new Date(this.today);
+        break;
+      case action === 'previous':
         start = new Date(this.dates[0]);
-      } else {
+        break;
+      case action === 'next':
         start = new Date(this.dates[this.dates.length - 1]);
-      }
+        break;
+      case action === 'choose':
+        start = new Date(this.choosenDate);
+        break;
+      default:
+        console.error('Invalid action');
+        return;
     }
+
     this.dates = [];
     switch (action) {
       case 'previous':
@@ -77,13 +87,21 @@ export class CalendarComponent implements OnInit {
         break;
 
       case 'next':
+        console.log(start);
         for (let i = 0; i <= 6; i++) {
           const nextDate = new Date(start);
           nextDate.setDate(start.getDate() + i);
           this.dates.push(nextDate);
         }
         break;
-
+      case 'choose':
+        console.log(typeof this.choosenDate);
+        for (let i = 0; i <= 6; i++) {
+          const nextDate = new Date(start);
+          nextDate.setDate(start.getDate() + i);
+          this.dates.push(nextDate);
+        }
+        break;
       default:
         console.error('Invalid action');
     }

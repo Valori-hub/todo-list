@@ -1,5 +1,9 @@
 <button (click)="generateDays('previous')">Previous 7 Days</button>
-<input type="date" [(ngModel)]="choosenDate" />
+<input
+  type="date"
+  [(ngModel)]="choosenDate"
+  (ngModelChange)="generateDays('choose')"
+/>
 <button (click)="generateDays('next')">Next 7 Days</button>
 <div class="calendar-container">
   <div class="header-container" *ngFor="let date of dates">
