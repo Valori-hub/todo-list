@@ -11,11 +11,18 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { HomeService } from '../../pages/home/home.service';
 import { SafePipe } from '../../safe.pipe';
 import { ColorsService } from '../../colors.service';
+import { SelectDropdownComponent } from '../select-dropdown/select-dropdown.component';
 
 @Component({
   selector: 'app-dialog-task',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, SafePipe, FormsModule],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    SafePipe,
+    FormsModule,
+    SelectDropdownComponent,
+  ],
   templateUrl: './dialog-task.component.html',
   styleUrl: './dialog-task.component.scss',
 })
@@ -60,5 +67,9 @@ export class DialogTaskComponent {
     if (inputElement) {
       (inputElement as HTMLInputElement).showPicker();
     }
+  }
+  onOptionSelected(value: any) {
+    // this.defaultList.name = value;
+    console.log(value);
   }
 }

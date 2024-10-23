@@ -1,0 +1,33 @@
+<div
+  class="dropdown"
+  cdkOverlayOrigin
+  #trigger="cdkOverlayOrigin"
+  (click)="toggleDropdown()"
+>
+  <div class="dropdown-header">
+    {{ selectedOption ? selectedOption.name : "Select an option" }}
+    <span class="arrow" [ngClass]="{ open: isOpen }">&#9662;</span>
+  </div>
+  <ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayOrigin]="trigger"
+    [cdkConnectedOverlayOpen]="isOpen"
+    [cdkConnectedOverlayPositions]="positions"
+  >
+    <ul class="dropdown-list" style="width: 200px">
+      <li
+        style="display: flex"
+        *ngFor="let option of options"
+        [ngClass]="{ selected: option === selectedOption }"
+        (click)="selectOption(option)"
+      >
+        <div
+          style="height: 20px; width: 20px"
+          *ngIf="option.icon"
+          [innerHTML]="option.icon.content | safe : 'html'"
+        ></div>
+        {{ option.name }}
+      </li>
+    </ul>
+  </ng-template>
+</div>

@@ -45,8 +45,13 @@
       id="date"
       class="selectors"
       [formControl]="taskForm.controls.date"
+      [min]="localDateTime"
       (click)="openPicker()"
     />
+    <app-select-dropdown
+      [options]="this.homeService.userData.todo"
+      (selected)="onOptionSelected($event)"
+    ></app-select-dropdown>
   </div>
   <div class="submit_btn_container">
     <select [formControl]="taskForm.controls.list">
@@ -57,6 +62,7 @@
         {{ list.name }}
       </option>
     </select>
+
     <button type="button" (click)="submitData()" class="submit_btn">
       Create
     </button>

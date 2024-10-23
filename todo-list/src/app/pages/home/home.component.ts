@@ -6,6 +6,7 @@ import { HomeService } from './home.service';
 import { SafePipe } from '../../safe.pipe';
 import { SideBarComponent } from '../../components/side-bar/side-bar.component';
 import { CalendarComponent } from '../../components/calendar/calendar.component';
+import { SelectDropdownComponent } from "../../components/select-dropdown/select-dropdown.component";
 
 @Component({
   selector: 'app-home',
@@ -17,7 +18,8 @@ import { CalendarComponent } from '../../components/calendar/calendar.component'
     SafePipe,
     SideBarComponent,
     CalendarComponent,
-  ],
+    SelectDropdownComponent
+],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })

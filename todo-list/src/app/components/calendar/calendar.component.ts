@@ -55,27 +55,26 @@ export class CalendarComponent implements OnInit {
       }
     });
   }
-
   generateDays(action: 'previous' | 'next' | 'choose') {
     let start: Date;
-    switch (true) {
-      case this.dates.length === 0:
-        start = new Date(this.today);
-        break;
-      case action === 'previous':
-        start = new Date(this.dates[0]);
-        break;
-      case action === 'next':
-        start = new Date(this.dates[this.dates.length - 1]);
-        break;
-      case action === 'choose':
-        start = new Date(this.choosenDate);
-        break;
-      default:
-        console.error('Invalid action');
-        return;
+    if (this.dates.length !== 0) {
+      switch (action) {
+        case 'previous':
+          start = new Date(this.dates[0]);
+          break;
+        case 'next':
+          start = new Date(this.dates[this.dates.length - 1]);
+          break;
+        case 'choose':
+          start = new Date(this.choosenDate);
+          break;
+        default:
+          console.error('Invalid action');
+          return;
+      }
+    } else {
+      start = new Date(this.today);
     }
-
     this.dates = [];
     switch (action) {
       case 'previous':
@@ -87,7 +86,6 @@ export class CalendarComponent implements OnInit {
         break;
 
       case 'next':
-        console.log(start);
         for (let i = 0; i <= 6; i++) {
           const nextDate = new Date(start);
           nextDate.setDate(start.getDate() + i);
@@ -95,7 +93,6 @@ export class CalendarComponent implements OnInit {
         }
         break;
       case 'choose':
-        console.log(typeof this.choosenDate);
         for (let i = 0; i <= 6; i++) {
           const nextDate = new Date(start);
           nextDate.setDate(start.getDate() + i);

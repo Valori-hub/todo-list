@@ -1,16 +1,27 @@
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px;
+  > .title {
+    color: var(--accent);
+    font-weight: 500;
+    font-size: 3rem;
+  }
+}
 .calendar-container {
   display: flex;
   text-align: center;
   overflow: auto;
   color: var(--accent);
   > .header-container {
+    width: 100%;
     > .header {
       display: flex;
       align-items: center;
       justify-content: center;
       border-bottom: 2px solid var(--accent);
       font-size: x-large;
-      width: 300px;
+      flex-grow: 1;
       height: 60px;
     }
     > .tasks-container {

@@ -1,10 +1,23 @@
-<button (click)="generateDays('previous')">Previous 7 Days</button>
-<input
-  type="date"
-  [(ngModel)]="choosenDate"
-  (ngModelChange)="generateDays('choose')"
-/>
-<button (click)="generateDays('next')">Next 7 Days</button>
+<div class="calendar-header">
+  <div class="title">Upcoming</div>
+  <div class="button-container">
+    <img
+      src="assets/svg_ui_icons/arrow_left.svg"
+      alt="previous"
+      (click)="generateDays('previous')"
+    />
+    <input
+      type="date"
+      [(ngModel)]="choosenDate"
+      (ngModelChange)="generateDays('choose')"
+    />
+    <img
+      src="assets/svg_ui_icons/arrow_right.svg"
+      alt="next"
+      (click)="generateDays('next')"
+    />
+  </div>
+</div>
 <div class="calendar-container">
   <div class="header-container" *ngFor="let date of dates">
     <div class="header">

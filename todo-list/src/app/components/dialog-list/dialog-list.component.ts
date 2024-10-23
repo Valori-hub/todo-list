@@ -12,11 +12,12 @@ import { HomeService } from '../../pages/home/home.service';
 import { IconPickerComponent } from '../icon-picker/icon-picker.component';
 import { SafePipe } from '../../safe.pipe';
 import { ColorsService } from '../../colors.service';
+import { SelectDropdownComponent } from "../select-dropdown/select-dropdown.component";
 
 @Component({
   selector: 'app-dialog-todo',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule, SafePipe, FormsModule],
+  imports: [ReactiveFormsModule, CommonModule, SafePipe, FormsModule, SelectDropdownComponent],
   templateUrl: './dialog-list.component.html',
   styleUrl: './dialog-list.component.scss',
 })
