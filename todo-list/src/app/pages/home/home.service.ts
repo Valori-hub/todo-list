@@ -49,6 +49,7 @@ export class HomeService {
     this.userData = newData;
     this.userDataSubject.next(this.userData);
     this.storageService.setItem('userData', this.userData);
+    this.http.postUserData('user', this.userData);
   }
   //Clearing user session storage and reloading the page
   async logout() {

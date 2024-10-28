@@ -10,7 +10,6 @@ router.get('/content', async (req: ExpressRequest, res: Response) => {
       '../../todo-list/src/assets/svg_list_icons'
     );
 
-    let svgFiles: any[] = [];
     fs.readdir(directoryPath, function (err: string, files: any[]) {
       if (err) {
         return res.status(500).json({ error: 'Unable to scan directory' });

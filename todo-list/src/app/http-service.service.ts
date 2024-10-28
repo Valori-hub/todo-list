@@ -50,4 +50,19 @@ export class HttpService {
         })
       );
   }
+  postUserData(type: 'task' | 'list' | 'user', data: any) {
+    switch (type) {
+      case 'task':
+        this.http.post(this.url + 'data/update_data', { taskObject: data });
+        break;
+      case 'list':
+        this.http.post(this.url + 'data/update_data', { listObejct: data });
+        break;
+      case 'user':
+        this.http.post(this.url + 'data/update_data', { userObject: data });
+        break;
+      default:
+        return console.log('invalid action');
+    }
+  }
 }

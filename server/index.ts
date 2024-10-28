@@ -1,6 +1,7 @@
 import express, { RequestHandler } from 'express';
 import * as UserRoutes from './routes/user';
 import * as IconRoutes from './routes/icons';
+import * as DataRoutes from './routes/data';
 import session from 'express-session';
 import crypto from 'crypto';
 import MongoStore from 'connect-mongo';
@@ -33,6 +34,7 @@ app.use(
     },
   })
 );
+app.use('/data', DataRoutes.router as RequestHandler);
 app.use('/users', UserRoutes.router as RequestHandler);
 app.use('/icons', IconRoutes.router as RequestHandler);
 app.use(
