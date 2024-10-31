@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatDialogRef } from '@angular/material/dialog';
-import { HomeService } from '../../pages/home/home.service';
+import { HomeService } from '../../services/home.service';
 import { SafePipe } from '../../safe.pipe';
 import { ColorsService } from '../../colors.service';
 import { SelectDropdownComponent } from '../select-dropdown/select-dropdown.component';

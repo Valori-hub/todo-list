@@ -57,7 +57,7 @@
     <select [formControl]="taskForm.controls.list">
       <option
         *ngFor="let list of this.homeService.userData.todo"
-        [value]="list.name"
+        [value]="list._id"
       >
         {{ list.name }}
       </option>

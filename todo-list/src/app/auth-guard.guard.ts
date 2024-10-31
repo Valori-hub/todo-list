@@ -1,33 +1,33 @@
-import { Injectable, OnInit, inject } from '@angular/core';
-import { CanActivateFn, CanDeactivateFn, Router } from '@angular/router';
-import { authService } from './auth-service.service';
+import { inject } from '@angular/core';
+import { Router } from '@angular/router';
+import { authService } from './services/auth-service.service';
 
-@Injectable({
-  providedIn: 'root',
-})
-class PermissionsService {
-  constructor(private auth: authService, private router: Router) {}
-  username: string | null = null;
-  async canActivate(): Promise<boolean> {
-    try {
-      await this.auth.getSessionData();
-      this.username = this.auth.getUsername();
-      if (this.username) {
-        setTimeout(() => this.router.navigate(['/home']), 0);
-        return false;
-      } else {
-        setTimeout(() => this.router.navigate(['/authenticator']), 0);
-        return true;
-      }
-    } catch (error) {
-      setTimeout(() => this.router.navigate(['/authenticator']), 0);
+export const homeGuard = () => {
+  const auth = inject(authService);
+  const router = inject(Router);
+  if (auth.isLoggedIn()) {
+    return true;
+  }
+  router.navigate(['/authenticator']);
+  return false;
+};
+export const loginGuard = async () => {
+  const auth = inject(authService);
+  const router = inject(Router);
+  try {
+    const sessionData = await auth.getSessionData();
+    if (sessionData === null) {
       return true;
     }
+  } catch (error) {
+    console.error('Error while fetching session data:', error);
+    return true;
   }
-}
-export const authGuard: CanActivateFn = (route, state) => {
-  return inject(PermissionsService).canActivate();
-};
-export const authHomeHuard: CanActivateFn = (route, state) => {
-  return !!inject(PermissionsService).canActivate();
+  const loggedIn = auth.isLoggedIn();
+
+  if (loggedIn) {
+    router.navigate(['home']);
+    return false;
+  }
+  return true;
 };

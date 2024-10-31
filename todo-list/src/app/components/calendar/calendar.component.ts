@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { HomeService } from '../../pages/home/home.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { HomeService } from '../../services/home.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-calendar',
@@ -10,12 +11,13 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss',
 })
-export class CalendarComponent implements OnInit {
+export class CalendarComponent implements OnInit, OnDestroy {
   startDate: string = '';
   today = new Date();
   choosenDate: Date = new Date();
   dates: Date[] = [];
   userData: any;
+  private subscription!: Subscription;
   allTask: {
     title: string;
     date: string | Date;
@@ -26,11 +28,10 @@ export class CalendarComponent implements OnInit {
   constructor(private homeService: HomeService) {}
   ngOnInit(): void {
     this.generateDays('next');
-    this.homeService.userData$.subscribe((data) => {
+    this.subscription = this.homeService.userData$.subscribe((data) => {
       this.userData = data;
       this.updateAllTasks();
     });
-    console.log(this.choosenDate);
   }
   getTasksForDate(date: Date): any[] {
     return this.allTask
@@ -46,7 +47,6 @@ export class CalendarComponent implements OnInit {
       if (Array.isArray(item.tasks)) {
         item.tasks.forEach((task: any) => {
           const taskDate = new Date(task.date);
-          console.log(taskDate);
           this.allTask.push({
             ...task,
             date: taskDate,
@@ -101,5 +101,8 @@ export class CalendarComponent implements OnInit {
       default:
         console.error('Invalid action');
     }
+  }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

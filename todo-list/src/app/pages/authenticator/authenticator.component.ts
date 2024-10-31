@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { HttpService } from '../../http-service.service';
+import { HttpService } from '../../services/http-service.service';
 import { SignUpComponent } from '../../components/sign-up-component/sign-up-conmponent.component';
 import { SignInComponent } from '../../components/sign-in-component/sign-in-conmponent.component';
 import { CommonModule } from '@angular/common';

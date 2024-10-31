@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { authService } from '../../auth-service.service';
-import { DialogListComponent } from '../../components/dialog-list/dialog-list.component';
-import { StorageService } from '../../storage-service.service';
-import { HttpService } from '../../http-service.service';
+import { authService } from './auth-service.service';
+import { DialogListComponent } from '../components/dialog-list/dialog-list.component';
+import { StorageService } from './storage-service.service';
+import { HttpService } from './http-service.service';
 import { SafeHtml } from '@angular/platform-browser';
-import { Ilist } from '../../components/dialog-list/model';
-import { DialogTaskComponent } from '../../components/dialog-task/dialog-task.component';
+import { Ilist } from '../components/dialog-list/model';
+import { DialogTaskComponent } from '../components/dialog-task/dialog-task.component';
 import { BehaviorSubject } from 'rxjs';
+import { Router } from '@angular/router';
 // interface Iuser {
 //   username: string;
 //   todo: {
@@ -25,7 +26,6 @@ import { BehaviorSubject } from 'rxjs';
 export class HomeService {
   iconList: { filename: string; content: string }[] = [];
   defultIcon: { filename: string; content: SafeHtml }[] = [];
-  username: string | null = null;
   userData: any;
   private userDataSubject = new BehaviorSubject<any>(this.getUserData());
   userData$ = this.userDataSubject.asObservable();
@@ -35,13 +35,10 @@ export class HomeService {
     private auth: authService,
     private dialog: MatDialog,
     private storageService: StorageService,
-    private http: HttpService
+    private http: HttpService,
+    private router: Router
   ) {}
 
-  async getSessionData() {
-    await this.auth.getSessionData();
-    this.username = this.auth.getUsername();
-  }
   getUserData() {
     return (this.userData = this.storageService.getItem('userData'));
   }
@@ -49,12 +46,10 @@ export class HomeService {
     this.userData = newData;
     this.userDataSubject.next(this.userData);
     this.storageService.setItem('userData', this.userData);
-    this.http.postUserData('user', this.userData);
   }
   //Clearing user session storage and reloading the page
-  async logout() {
+  logout() {
     this.auth.logout();
-    this.storageService.removeItem('userData');
     window.location.reload();
   }
   removeElement(element: any) {
@@ -80,6 +75,11 @@ export class HomeService {
           color: result.color,
           icon: result.icon,
         });
+        this.http.postUserData(
+          'list',
+          this.userData.todo.slice(-1)[0],
+          this.userData.username
+        );
         this.storageService.setItem('userData', this.userData);
         console.log(this.userData);
       } else {
@@ -95,7 +95,7 @@ export class HomeService {
     dialogRef.afterClosed().subscribe((result) => {
       if (result.list) {
         this.userData.todo.map((list: any) => {
-          if (result.list === list.name) {
+          if (result.list_id === list._id) {
             list.tasks.push({
               title: result.title,
               description: result.description,
@@ -103,9 +103,17 @@ export class HomeService {
               date: result.date,
               list: result.list,
             });
+            console.log(list._id);
+            this.http.postUserData(
+              'task',
+              list.tasks.slice(-1)[0],
+              this.userData.username,
+              list._id
+            );
           }
         });
         this.updateUserData(this.userData);
+        console.log(this.userData);
       }
     });
   }

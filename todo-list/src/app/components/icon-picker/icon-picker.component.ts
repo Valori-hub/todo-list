@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HomeService } from '../../pages/home/home.service';
+import { HomeService } from '../../services/home.service';
 import { SafeHtml } from '@angular/platform-browser';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { SafePipe } from '../../safe.pipe';

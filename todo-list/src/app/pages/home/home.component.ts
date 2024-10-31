@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { CommonModule } from '@angular/common';
-import { HomeService } from './home.service';
-import { SafePipe } from '../../safe.pipe';
-import { SideBarComponent } from '../../components/side-bar/side-bar.component';
+import { Subscription } from 'rxjs';
 import { CalendarComponent } from '../../components/calendar/calendar.component';
-import { SelectDropdownComponent } from "../../components/select-dropdown/select-dropdown.component";
+import { SelectDropdownComponent } from '../../components/select-dropdown/select-dropdown.component';
+import { SideBarComponent } from '../../components/side-bar/side-bar.component';
+import { SafePipe } from '../../safe.pipe';
+import { HomeService } from '../../services/home.service';
 
 @Component({
   selector: 'app-home',
@@ -18,26 +19,25 @@ import { SelectDropdownComponent } from "../../components/select-dropdown/select
     SafePipe,
     SideBarComponent,
     CalendarComponent,
-    SelectDropdownComponent
-],
+    SelectDropdownComponent,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   userData: any;
   test1: any;
+  private subscription!: Subscription;
   constructor(public homeService: HomeService) {}
   ngOnInit(): void {
     this.InitComponent();
   }
   private async InitComponent() {
-    this.homeService.getSessionData();
     this.homeService.getIcons();
-    this.homeService.userData$.subscribe((data) => {
+    this.subscription = this.homeService.userData$.subscribe((data) => {
       this.userData = data;
       this.updateTasks();
     });
-    console.log(this.userData);
   }
   updateTasks() {
     this.test1 = this.userData.todo[0].tasks;
@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
       return dateA - dateB;
     });
   }
-  test(index: any) {
-    console.log(index);
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

@@ -13,10 +13,10 @@ import {
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
-import { HttpService } from '../../http-service.service';
+import { HttpService } from '../../services/http-service.service';
 import { Router } from '@angular/router';
-import { authService } from '../../auth-service.service';
-import { StorageService } from '../../storage-service.service';
+import { authService } from '../../services/auth-service.service';
+import { StorageService } from '../../services/storage-service.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -57,11 +57,11 @@ export class SignInComponent {
     const formValues = this.loginForm.getRawValue();
     this.httpClient.loginUser(formValues).subscribe((response) => {
       if (response.result.success) {
+        this.auth.getSessionData();
         this.storageService.setItem('userData', response.userData);
-        console.log(response.result.message);
         setTimeout(() => {
           this.router.navigate(['home']);
-        }, 3000);
+        }, 2000);
       } else {
         console.log(response.result.message1);
       }
