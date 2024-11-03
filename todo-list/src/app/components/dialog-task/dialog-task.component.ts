@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 import { MatDialogRef } from '@angular/material/dialog';
 import { HomeService } from '../../services/home.service';
 import { SafePipe } from '../../safe.pipe';
-import { ColorsService } from '../../colors.service';
+import { ColorsService } from '../../services/colors.service';
 import { SelectDropdownComponent } from '../select-dropdown/select-dropdown.component';
 
 @Component({
@@ -35,9 +35,7 @@ export class DialogTaskComponent {
   hours = this.padzero(this.today.getHours());
   minutes = this.padzero(this.today.getMinutes());
   localDateTime = `${this.year}-${this.month}-${this.day}T${this.hours}:${this.minutes}`;
-  defaultList = this.homeService.userData.todo.find(
-    ({ name }: { name: string }) => name === 'Unassigned tasks'
-  );
+  defaultList = this.homeService.userData.todo[0]._id;
   taskForm = new FormGroup({
     title: new FormControl<string>('', [
       Validators.required,
@@ -46,7 +44,7 @@ export class DialogTaskComponent {
     description: new FormControl<string>(''),
     color: new FormControl<string>(this.ColorService.accentColor),
     date: new FormControl<string | Date>(this.localDateTime),
-    list: new FormControl(this.defaultList.name),
+    list_id: new FormControl(this.defaultList),
   });
   constructor(
     public homeService: HomeService,

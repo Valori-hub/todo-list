@@ -54,11 +54,12 @@
     ></app-select-dropdown>
   </div>
   <div class="submit_btn_container">
-    <select [formControl]="taskForm.controls.list">
+    <select [formControl]="taskForm.controls.list_id">
       <option
         *ngFor="let list of this.homeService.userData.todo"
         [value]="list._id"
       >
+        {{ list._id }}
         {{ list.name }}
       </option>
     </select>

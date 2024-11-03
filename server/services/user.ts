@@ -13,8 +13,22 @@ export async function userRegistration(userData: any) {
           })
           .toArray()
       ).length > 0;
-    if (userExist === false) {
-      const documents = await db.collection('Users').insertOne(userData);
+    if (!userExist) {
+      const newUser = {
+        username: userData.username,
+        email: userData.email,
+        password: userData.password,
+        todo: [
+          {
+            _id: new MongoDb.ObjectId(),
+            name: userData.todo[0].title,
+            description: '',
+            icon: userData.todo[0].icon,
+            tasks: [],
+          },
+        ],
+      };
+      const documents = await db.collection('Users').insertOne(newUser);
       console.log('Account has been created');
       return {
         success: true,

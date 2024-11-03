@@ -5,8 +5,7 @@ router.post('/post_task', async (req: ExpressRequest, res: Response) => {
   try {
     const userData = req.body.taskObject;
     const username = req.body.username;
-    const list_id = req.body.list_id;
-    const result = await data.updateTask(userData, username, list_id);
+    const result = await data.updateTask(userData, username);
     res.status(201).json({ data: result });
   } catch (error) {
     console.error('Error creating user:', error);

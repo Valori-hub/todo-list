@@ -1,10 +1,13 @@
 import * as MongoDb from 'mongodb';
 import { db } from '../shared/db_connection';
-export async function updateTask(userData: any, username: any, list_id: any) {
+
+export async function updateTask(userData: any, username: any) {
   try {
     const user = await db.collection('Users').findOne({ username: username });
     if (user) {
-      const todoList = user.todo.find((todo: any) => todo._id === list_id);
+      const todoList = user.todo.find(
+        (todo: any) => todo._id.toString() === userData.list_id
+      );
       if (todoList) {
         const newTask = {
           _id: new MongoDb.ObjectId(),
@@ -12,13 +15,12 @@ export async function updateTask(userData: any, username: any, list_id: any) {
           description: userData.description,
           color: userData.color,
           date: userData.date,
-          list: userData.list,
+          list_id: userData.list_id,
         };
         todoList.tasks.push(newTask);
         await db
           .collection('Users')
           .updateOne({ username: username }, { $set: { todo: user.todo } });
-        console.log('dziala');
         return { success: true, message: 'Task has been posted' };
       }
     } else {
@@ -44,7 +46,11 @@ export async function updateList(userData: any, username: any) {
       await db
         .collection('Users')
         .updateOne({ username: username }, { $set: { todo: user.todo } });
-      return { success: true, message: 'List has been posted' };
+      return {
+        success: true,
+        message: 'List has been posted',
+        todo: user.todo,
+      };
     } else {
       console.error('User not found.');
       return { success: false, message: 'List has not been posted' };

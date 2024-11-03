@@ -56,29 +56,24 @@ export class HttpService {
       );
   }
   /* Sending user data  */
-  postUserData(type: 'task' | 'list', data: any, username: any, list_id?: any) {
+  postUserData(
+    type: 'task' | 'list',
+    data: any,
+    username: any,
+    list_id?: any
+  ): any {
     switch (type) {
       case 'task':
-        this.http
-          .post(this.url + 'data/post_task', {
-            taskObject: data,
-            username: username,
-            list_id: list_id,
-          })
-          .subscribe((result: any) => {
-            console.log(result.message, result.success);
-          });
-        break;
+        return this.http.post(this.url + 'data/post_task', {
+          taskObject: data,
+          username: username,
+          list_id: list_id,
+        });
       case 'list':
-        this.http
-          .post(this.url + 'data/post_list', {
-            listObject: data,
-            username: username,
-          })
-          .subscribe((result: any) => {
-            console.log(result.message, result.success);
-          });
-        break;
+        return this.http.post(this.url + 'data/post_list', {
+          listObject: data,
+          username: username,
+        });
       default:
         return console.log('invalid action');
     }

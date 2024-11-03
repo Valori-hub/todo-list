@@ -11,7 +11,7 @@ import { MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { HomeService } from '../../services/home.service';
 import { IconPickerComponent } from '../icon-picker/icon-picker.component';
 import { SafePipe } from '../../safe.pipe';
-import { ColorsService } from '../../colors.service';
+import { ColorsService } from '../../services/colors.service';
 import { SelectDropdownComponent } from '../select-dropdown/select-dropdown.component';
 
 @Component({

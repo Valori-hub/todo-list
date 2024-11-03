@@ -75,13 +75,18 @@ export class HomeService {
           color: result.color,
           icon: result.icon,
         });
-        this.http.postUserData(
-          'list',
-          this.userData.todo.slice(-1)[0],
-          this.userData.username
-        );
-        this.storageService.setItem('userData', this.userData);
-        console.log(this.userData);
+        this.http
+          .postUserData(
+            'list',
+            this.userData.todo.slice(-1)[0],
+            this.userData.username
+          )
+          .subscribe((result: any) => {
+            console.log(result.data.todo);
+            this.userData.todo = result.data.todo;
+            this.storageService.setItem('userData', this.userData);
+            console.log(this.userData.todo);
+          });
       } else {
         console.log('You can have only 4 lists on basic plan');
       }
@@ -93,7 +98,7 @@ export class HomeService {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result.list) {
+      if (result.list_id) {
         this.userData.todo.map((list: any) => {
           if (result.list_id === list._id) {
             list.tasks.push({
@@ -101,14 +106,12 @@ export class HomeService {
               description: result.description,
               color: result.color,
               date: result.date,
-              list: result.list,
+              list_id: result.list_id,
             });
-            console.log(list._id);
             this.http.postUserData(
               'task',
               list.tasks.slice(-1)[0],
-              this.userData.username,
-              list._id
+              this.userData.username
             );
           }
         });
