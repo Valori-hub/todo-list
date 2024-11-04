@@ -25,8 +25,11 @@ export class SideBarComponent implements OnInit, OnDestroy {
       this.userData = data;
     });
   }
+  goToRoute(route: string) {
+    this.router.navigate([route]);
+  }
   goToDetails(listId: string) {
-    this.router.navigate(['/todos', listId]);
+    this.router.navigate(['app/list', listId]);
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();

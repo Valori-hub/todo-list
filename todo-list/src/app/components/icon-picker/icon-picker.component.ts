@@ -23,7 +23,6 @@ export class IconPickerComponent {
   selectedIcon(icon: any) {
     if (icon) {
       this.dialogRef.close(icon);
-      console.log(icon);
     }
   }
 }

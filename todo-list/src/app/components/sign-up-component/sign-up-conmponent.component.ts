@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -38,6 +38,9 @@ import { HomeService } from '../../services/home.service';
   styleUrl: './sign-up-conmponent.component.scss',
 })
 export class SignUpComponent {
+  defultIcon = this.homeService.iconList.find(
+    ({ filename }) => filename === 'house-svgrepo-com.svg'
+  );
   errorMessage = '';
   hide = true;
   validatePasswordConfirmation: ValidatorFn = (
@@ -58,6 +61,7 @@ export class SignUpComponent {
     }
     return null;
   };
+
   registrationForm = new FormGroup({
     username: new FormControl<string>('', [Validators.required]),
     email: new FormControl<string>('', [Validators.required, Validators.email]),
@@ -71,13 +75,16 @@ export class SignUpComponent {
     ]),
     todo: new FormControl<{}[]>([
       {
-        title: 'Unassigned tasks',
+        title: 'Home',
         desription: '',
-        icon: null,
+        icon: this.defultIcon,
         tasks: [],
       },
     ]),
   });
+  log() {
+    console.log(this.registrationForm.value.todo);
+  }
   goToLogin() {
     this.router.navigate(['/authenticator/login']);
   }

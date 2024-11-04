@@ -17,6 +17,7 @@ import { HttpService } from '../../services/http-service.service';
 import { Router } from '@angular/router';
 import { authService } from '../../services/auth-service.service';
 import { StorageService } from '../../services/storage-service.service';
+import { HomeService } from '../../services/home.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -48,7 +49,8 @@ export class SignInComponent {
     private httpClient: HttpService,
     private router: Router,
     private auth: authService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private homeService: HomeService
   ) {}
   goToRegister() {
     this.router.navigate(['/authenticator/register']);
@@ -59,8 +61,9 @@ export class SignInComponent {
       if (response.result.success) {
         this.auth.getSessionData();
         this.storageService.setItem('userData', response.userData);
+        this.homeService.setUserData(response.userData);
         setTimeout(() => {
-          this.router.navigate(['home']);
+          this.router.navigate(['app']);
         }, 2000);
       } else {
         console.log(response.result.message1);

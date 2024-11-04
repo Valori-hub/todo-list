@@ -29,7 +29,7 @@ import { SelectDropdownComponent } from '../select-dropdown/select-dropdown.comp
 })
 export class DialogListComponent {
   defultIcon = this.homeService.iconList.find(
-    ({ filename }) => filename === 'star-sharp-svgrepo-com.svg'
+    ({ filename }) => filename === 'star-svgrepo-com.svg'
   );
   listForm = new FormGroup({
     title: new FormControl<string>('', [
@@ -53,9 +53,10 @@ export class DialogListComponent {
       panelClass: 'custom-dialog',
     });
     dialogRef.afterClosed().subscribe((result) => {
-      console.log(result);
-      this.defultIcon = result;
-      this.listForm.get('icon')?.setValue(this.defultIcon);
+      if (result) {
+        this.defultIcon = result;
+        this.listForm.get('icon')?.setValue(this.defultIcon);
+      }
     });
   }
   submitData(): void {
