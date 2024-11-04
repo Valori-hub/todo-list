@@ -8,6 +8,7 @@ import { SelectDropdownComponent } from '../../components/select-dropdown/select
 import { SideBarComponent } from '../../components/side-bar/side-bar.component';
 import { SafePipe } from '../../safe.pipe';
 import { HomeService } from '../../services/home.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,7 @@ import { HomeService } from '../../services/home.service';
     SideBarComponent,
     CalendarComponent,
     SelectDropdownComponent,
+    RouterModule,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

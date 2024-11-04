@@ -26,7 +26,7 @@ export const loginGuard = async () => {
   const loggedIn = auth.isLoggedIn();
 
   if (loggedIn) {
-    router.navigate(['home']);
+    router.navigate(['app']);
     return false;
   }
   return true;

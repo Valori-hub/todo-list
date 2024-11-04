@@ -25,7 +25,7 @@ import { Router } from '@angular/router';
 })
 export class HomeService {
   iconList: { filename: string; content: string }[] = [];
-  defultIcon: { filename: string; content: SafeHtml }[] = [];
+  defultIcon: any;
   userData: any;
   private userDataSubject = new BehaviorSubject<any>(this.getUserData());
   userData$ = this.userDataSubject.asObservable();
@@ -42,6 +42,10 @@ export class HomeService {
   getUserData() {
     return (this.userData = this.storageService.getItem('userData'));
   }
+  setUserData(newUserData: any) {
+    this.userData = newUserData;
+    this.userDataSubject.next(this.userData);
+  }
   updateUserData(newData: any) {
     this.userData = newData;
     this.userDataSubject.next(this.userData);
@@ -49,6 +53,7 @@ export class HomeService {
   }
   //Clearing user session storage and reloading the page
   logout() {
+    localStorage.removeItem('userData');
     this.auth.logout();
     window.location.reload();
   }
@@ -59,6 +64,9 @@ export class HomeService {
   getIcons() {
     this.http.getIcons().subscribe((results) => {
       this.iconList = results.data;
+      this.defultIcon = this.iconList.find(
+        ({ filename }) => filename === 'star-svgrepo-com.svg'
+      );
     });
   }
   openListDialog(): void {
@@ -67,28 +75,30 @@ export class HomeService {
     });
 
     dialogRef.afterClosed().subscribe((result: Ilist) => {
-      if (this.userData.todo.length < this.maxLists) {
-        this.userData.todo.push({
-          name: result.title,
-          description: result.description,
-          tasks: result.tasks,
-          color: result.color,
-          icon: result.icon,
-        });
-        this.http
-          .postUserData(
-            'list',
-            this.userData.todo.slice(-1)[0],
-            this.userData.username
-          )
-          .subscribe((result: any) => {
-            console.log(result.data.todo);
-            this.userData.todo = result.data.todo;
-            this.storageService.setItem('userData', this.userData);
-            console.log(this.userData.todo);
+      if (result) {
+        if (this.userData.todo.length < this.maxLists) {
+          this.userData.todo.push({
+            name: result.title,
+            description: result.description,
+            tasks: result.tasks,
+            color: result.color,
+            icon: result.icon,
           });
-      } else {
-        console.log('You can have only 4 lists on basic plan');
+          this.http
+            .postUserData(
+              'list',
+              this.userData.todo.slice(-1)[0],
+              this.userData.username
+            )
+            .subscribe((result: any) => {
+              console.log(result.data.todo);
+              this.userData.todo = result.data.todo;
+              this.storageService.setItem('userData', this.userData);
+              console.log(this.userData.todo);
+            });
+        } else {
+          console.log('You can have only 4 lists on basic plan');
+        }
       }
     });
   }
@@ -98,25 +108,27 @@ export class HomeService {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result.list_id) {
-        this.userData.todo.map((list: any) => {
-          if (result.list_id === list._id) {
-            list.tasks.push({
-              title: result.title,
-              description: result.description,
-              color: result.color,
-              date: result.date,
-              list_id: result.list_id,
-            });
-            this.http.postUserData(
-              'task',
-              list.tasks.slice(-1)[0],
-              this.userData.username
-            );
-          }
-        });
-        this.updateUserData(this.userData);
-        console.log(this.userData);
+      if (result) {
+        if (result.list_id) {
+          this.userData.todo.map((list: any) => {
+            if (result.list_id === list._id) {
+              list.tasks.push({
+                title: result.title,
+                description: result.description,
+                color: result.color,
+                date: result.date,
+                list_id: result.list_id,
+              });
+              this.http.postUserData(
+                'task',
+                list.tasks.slice(-1)[0],
+                this.userData.username
+              );
+            }
+          });
+          this.updateUserData(this.userData);
+          console.log(this.userData);
+        }
       }
     });
   }

@@ -4,6 +4,8 @@ import { SignInComponent } from './components/sign-in-component/sign-in-conmpone
 import { AuthenticatorComponent } from './pages/authenticator/authenticator.component';
 import { SignUpComponent } from './components/sign-up-component/sign-up-conmponent.component';
 import { loginGuard, homeGuard } from './auth-guard.guard';
+import { ListDetailsComponent } from './components/list-details/list-details.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 export const routes: Routes = [
   {
@@ -27,9 +29,19 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'home',
+    path: 'app',
     component: HomeComponent,
     canMatch: [homeGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: 'calendar',
+        pathMatch: 'full',
+      },
+      { path: 'calendar', component: CalendarComponent },
+      { path: 'list/:id', component: ListDetailsComponent },
+    ],
   },
+
   { path: '', redirectTo: '/authenticator', pathMatch: 'full' },
 ];

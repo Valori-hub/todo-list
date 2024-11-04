@@ -24,7 +24,6 @@ export class authService {
   logout() {
     this.httpClient.logout().subscribe((result) => {
       console.log('Logged out successfully:', result);
-      this.username = null;
     });
   }
 }
