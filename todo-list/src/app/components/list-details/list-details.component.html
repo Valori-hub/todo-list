@@ -1,1 +1,19 @@
-<p style="font-size: 200px; color: black">list-details works!</p>
+<div class="main">
+  <div class="info-container">
+    <div class="title-container">
+      <div
+        class="icon"
+        [innerHTML]="this.userData?.icon?.content | safe : 'html'"
+      ></div>
+      <div class="header">{{ this.userData?.name }}</div>
+    </div>
+
+    <div class="description">{{ this.userData?.description }}</div>
+  </div>
+  <div class="content-container">
+    <div class="task" *ngFor="let list of userData?.tasks">
+      <span class="date">{{ convertDate(list.date) }}</span>
+      <div class="title">{{ list.title }}</div>
+    </div>
+  </div>
+</div>
