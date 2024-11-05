@@ -33,37 +33,27 @@
     </div>
   </form>
   <div class="button-section">
+    <app-select-dropdown
+      [options]="this.homeService.userData.todo"
+      (selected)="onOptionSelected($event)"
+    ></app-select-dropdown>
+    <input
+      style="width: 160px; text-align: center"
+      type="datetime-local"
+      #dateInput
+      id="date"
+      class="selectors"
+      [formControl]="taskForm.controls.date"
+      (click)="openPicker()"
+    />
     <input
       type="color"
       id="color"
       class="selectors"
       [formControl]="taskForm.controls.color"
     />
-    <input
-      style="width: 160px; text-align: center"
-      type="datetime-local"
-      id="date"
-      class="selectors"
-      [formControl]="taskForm.controls.date"
-      [min]="localDateTime"
-      (click)="openPicker()"
-    />
-    <app-select-dropdown
-      [options]="this.homeService.userData.todo"
-      (selected)="onOptionSelected($event)"
-    ></app-select-dropdown>
   </div>
   <div class="submit_btn_container">
-    <select [formControl]="taskForm.controls.list_id">
-      <option
-        *ngFor="let list of this.homeService.userData.todo"
-        [value]="list._id"
-      >
-        {{ list._id }}
-        {{ list.name }}
-      </option>
-    </select>
-
     <button type="button" (click)="submitData()" class="submit_btn">
       Create
     </button>

@@ -52,6 +52,6 @@ export class SelectDropdownComponent {
   selectOption(option: Option) {
     this.selectedOption = option;
     this.isOpen = false;
-    this.selected.emit(option.value);
+    this.selected.emit(option);
   }
 }

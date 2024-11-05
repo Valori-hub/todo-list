@@ -1,8 +1,12 @@
 .icon-selector {
   padding: 16px;
   border-radius: 8px;
-  display: flex;
-  background-color: #0e9060;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 10px;
+  grid-row-gap: 10px;
+  background-color: var(--secondary);
   > .icon-container {
     width: 60px;
     height: 60px;
@@ -22,7 +26,7 @@
       transition: background-color 0.2s;
     }
     .icon-item:hover {
-      background-color: rgb(98, 246, 186);
+      background-color: var(--primary);
     }
   }
 }

@@ -5,8 +5,7 @@
   (click)="toggleDropdown()"
 >
   <div class="dropdown-header">
-    {{ selectedOption ? selectedOption.name : "Select an option" }}
-    <span class="arrow" [ngClass]="{ open: isOpen }">&#9662;</span>
+    {{ selectedOption ? selectedOption.name : options[0].name }}
   </div>
   <ng-template
     cdkConnectedOverlay
@@ -14,9 +13,8 @@
     [cdkConnectedOverlayOpen]="isOpen"
     [cdkConnectedOverlayPositions]="positions"
   >
-    <ul class="dropdown-list" style="width: 200px">
+    <ul class="dropdown-list">
       <li
-        style="display: flex"
         *ngFor="let option of options"
         [ngClass]="{ selected: option === selectedOption }"
         (click)="selectOption(option)"

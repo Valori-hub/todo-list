@@ -2,6 +2,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Merienda:wght@300..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Grandstander:ital,wght@0,100..900;1,100..900&family=Merienda:wght@300..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Grandstander:ital,wght@0,100..900;1,100..900&family=Merienda:wght@300..900&display=swap");
+@import "flatpickr/dist/flatpickr.min.css";
+
 :root {
   --primary: #1d1921;
   --secondary: #151318;
@@ -41,5 +43,91 @@ body {
   mat-dialog-container,
   .mat-mdc-dialog-container .mdc-dialog__surface {
     background-color: transparent;
+  }
+}
+/* Flatpickr custom styles */
+.flatpickr-calendar {
+  background-color: var(--border);
+  box-shadow: none;
+  border-radius: 15px;
+  .flatpickr-months {
+    > .flatpickr-prev-month,
+    .flatpickr-next-month {
+      fill: var(--accent);
+      &:hover svg {
+        fill: var(--border);
+      }
+    }
+    .flatpickr-month {
+      border-radius: 15px 15px 0 0;
+      background-color: var(--primary);
+      color: var(--accent);
+      > .flatpickr-current-month {
+        > .flatpickr-monthDropdown-months {
+          text-align: center;
+          -webkit-appearance: none;
+          -moz-appearance: none;
+          appearance: none;
+          outline: none;
+          border: none;
+          box-shadow: none;
+          background: none;
+          &:focus,
+          :hover {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            outline: none;
+            border: none;
+            box-shadow: none;
+            background: none;
+          }
+          > .flatpickr-monthDropdown-month {
+            background-color: #332a41;
+            border-radius: 0;
+            > select {
+              background-color: #baa2d2;
+              &:hover {
+                background-color: #baa2d2;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .flatpickr-weekdays {
+    background-color: var(--primary);
+    color: var(--accent);
+    .flatpickr-weekdaycontainer > span {
+      color: #baa2d2;
+    }
+  }
+  .flatpickr-days {
+    .dayContainer {
+      > .flatpickr-day {
+        color: var(--accent);
+        &:hover {
+          background-color: var(--primary);
+          border: none;
+        }
+        &.flatpickr-disabled:hover {
+          background-color: inherit;
+        }
+        &.nextMonthDay:hover {
+          color: var(--accent);
+        }
+      }
+      > .prevMonthDay {
+        color: var(--border);
+      }
+      > .nextMonthDay {
+        color: var(--primary);
+      }
+      > .flatpickr-disabled {
+        color: var(--secondary);
+      }
+    }
   }
 }

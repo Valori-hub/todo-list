@@ -1,4 +1,10 @@
-import { Component } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -12,7 +18,7 @@ import { HomeService } from '../../services/home.service';
 import { SafePipe } from '../../safe.pipe';
 import { ColorsService } from '../../services/colors.service';
 import { SelectDropdownComponent } from '../select-dropdown/select-dropdown.component';
-
+import flatpickr from 'flatpickr';
 @Component({
   selector: 'app-dialog-task',
   standalone: true,
@@ -26,7 +32,7 @@ import { SelectDropdownComponent } from '../select-dropdown/select-dropdown.comp
   templateUrl: './dialog-task.component.html',
   styleUrl: './dialog-task.component.scss',
 })
-export class DialogTaskComponent {
+export class DialogTaskComponent implements AfterViewInit {
   padzero = (num: any) => (num < 10 ? '0' + num : num);
   today = new Date();
   year = this.today.getFullYear();
@@ -51,6 +57,19 @@ export class DialogTaskComponent {
     public dialogRef: MatDialogRef<DialogTaskComponent>,
     private ColorService: ColorsService
   ) {}
+  @ViewChild('dateInput', { static: false }) dateInput!: ElementRef;
+
+  ngAfterViewInit() {
+    flatpickr(this.dateInput.nativeElement, {
+      enableTime: true,
+      minDate: this.today,
+      defaultDate: this.today,
+      dateFormat: 'd.m.Y   H:i',
+      position: 'auto center',
+      time_24hr: true,
+      
+    });
+  }
   submitData(): void {
     if (this.taskForm.valid) {
       const formValue = this.taskForm.value;
@@ -67,7 +86,7 @@ export class DialogTaskComponent {
     }
   }
   onOptionSelected(value: any) {
-    // this.defaultList.name = value;
-    console.log(value);
+    this.defaultList = value._id;
+    console.log(this.defaultList);
   }
 }

@@ -34,7 +34,7 @@
   > .button-section {
     border-top: 3px solid #3e3844;
     display: flex;
-    justify-content: left;
+    justify-content: space-around;
     align-items: center;
     flex-direction: row;
     height: 50%;
@@ -43,11 +43,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-left: 50px;
       color: var(--accent);
       background-color: var(--secondary);
-      border: solid;
-      border-color: #3e3844;
+      border: 2px solid #3e3844;
       border-radius: 5px;
       height: 40px;
       width: 100px;
