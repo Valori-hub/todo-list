@@ -1,7 +1,15 @@
 <div class="login-page">
-  <div class="header"><span>Login</span></div>
+  <div
+    class="header"
+    [@test1]="{ value: animationState, params: { delay: 1000 } }"
+  >
+    <span>Login</span>
+  </div>
   <form [formGroup]="loginForm">
-    <div class="card-container">
+    <div
+      class="card-container"
+      [@test1]="{ value: animationState, params: { delay: 1400 } }"
+    >
       <div class="form__group field">
         <input
           [formControl]="loginForm.controls.username"
@@ -39,10 +47,14 @@
         </div>
         <label for="name" class="form__label">Password</label>
       </div>
-      <div class="button-section">
-        <button type="submit" (click)="login()">Log in</button>
-        <a (click)="goToRegister()">Sign up</a>
-      </div>
+    </div>
+    <div
+      class="button-section"
+      [@test1]="{ value: animationState, params: { delay: 1800 } }"
+      (@test1.done)="onAnimationDone($event, 1)"
+    >
+      <button type="submit" (click)="login()">Log in</button>
+      <a (click)="goToRegister()">Sign up</a>
     </div>
   </form>
 </div>

@@ -23,33 +23,33 @@
     width: 100%;
     height: 50%;
     > .card-container {
-      height: 100%;
+      height: 50%;
       width: 100%;
       background-color: transparent;
       border-radius: 50px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      > .button-section {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        flex-direction: column;
-        height: 30%;
-        width: 100%;
-        > button {
-          color: var(--secondary);
-          background-color: var(--accent);
-          border: none;
-          border-radius: 30px;
-          height: 60px;
-          width: 30%;
-          cursor: pointer;
-        }
-        > a {
-          color: var(--accent);
-          cursor: pointer;
-        }
+    }
+    > .button-section {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-direction: column;
+      height: 30%;
+      width: 100%;
+      > button {
+        color: var(--secondary);
+        background-color: var(--accent);
+        border: none;
+        border-radius: 30px;
+        height: 60px;
+        width: 30%;
+        cursor: pointer;
+      }
+      > a {
+        color: var(--accent);
+        cursor: pointer;
       }
     }
   }

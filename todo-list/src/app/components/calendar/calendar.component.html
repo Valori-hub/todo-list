@@ -1,21 +1,29 @@
 <div class="calendar-header">
   <div class="title">Upcoming</div>
   <div class="button-container">
-    <img
-      src="assets/svg_ui_icons/arrow_left.svg"
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 -960 960 960"
       alt="previous"
       (click)="generateDays('previous')"
-    />
+    >
+      <path d="M560-280 360-480l200-200v400Z" />
+    </svg>
     <input
+      #dateInput
       type="date"
-      [(ngModel)]="choosenDate"
+      class="date-selector"
+      [(ngModel)]="chosenDate"
       (ngModelChange)="generateDays('choose')"
     />
-    <img
-      src="assets/svg_ui_icons/arrow_right.svg"
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 -960 960 960"
       alt="next"
       (click)="generateDays('next')"
-    />
+    >
+      <path d="M400-280v-400l200 200-200 200Z" />
+    </svg>
   </div>
 </div>
 <div class="calendar-container">

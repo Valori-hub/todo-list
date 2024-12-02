@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
@@ -18,7 +18,8 @@ import { Router } from '@angular/router';
 import { authService } from '../../services/auth-service.service';
 import { StorageService } from '../../services/storage-service.service';
 import { HomeService } from '../../services/home.service';
-
+import * as animation from '../../animations/login-page-animation';
+import { AnimationEvent } from '@angular/animations';
 @Component({
   selector: 'app-sign-in',
   standalone: true,
@@ -35,8 +36,10 @@ import { HomeService } from '../../services/home.service';
   ],
   templateUrl: './sign-in-conmponent.component.html',
   styleUrl: './sign-in-conmponent.component.scss',
+  animations: [animation.testAnimation, animation.test1],
 })
-export class SignInComponent {
+export class SignInComponent implements OnInit {
+  animationState: 'onScreen' | 'offScreen' = 'onScreen';
   hide = true;
   loginForm = new FormGroup({
     username: new FormControl<string>('', [Validators.required]),
@@ -52,8 +55,29 @@ export class SignInComponent {
     private storageService: StorageService,
     private homeService: HomeService
   ) {}
+  ngOnInit(): void {
+    this.animationState = 'offScreen';
+    setTimeout(() => {
+      this.animationState = 'onScreen';
+    }, 200);
+  }
+  toggleAnimation(): void {}
+
   goToRegister() {
-    this.router.navigate(['/authenticator/register']);
+    setTimeout(() => {
+      this.animationState = 'offScreen';
+    }, 200);
+    // setTimeout(() => {
+    //   this.router.navigate(['/authenticator/register']);
+    // }, 1000);
+  }
+  onAnimationDone(event: AnimationEvent, lastElement: number): void {
+    if (event.fromState === 'offScreen' && event.toState === 'onScreen') {
+      if (lastElement === 1) {
+        console.log('super');
+      }
+    }
+    
   }
   login() {
     const formValues = this.loginForm.getRawValue();

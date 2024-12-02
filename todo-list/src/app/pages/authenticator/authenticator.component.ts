@@ -27,7 +27,6 @@ export class AuthenticatorComponent implements OnInit {
   }
   private async InitComponent() {
     this.homeService.getIcons();
-    console.log(this.homeService.iconList);
   }
   ngOnInit(): void {
     this.InitComponent();

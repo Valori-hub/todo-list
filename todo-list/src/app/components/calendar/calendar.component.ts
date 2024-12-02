@@ -1,8 +1,16 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { HomeService } from '../../services/home.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, formatDate } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Subscription } from 'rxjs';
+import flatpickr from 'flatpickr';
 
 @Component({
   selector: 'app-calendar',
@@ -11,10 +19,10 @@ import { Subscription } from 'rxjs';
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss',
 })
-export class CalendarComponent implements OnInit, OnDestroy {
+export class CalendarComponent implements OnInit, OnDestroy, AfterViewInit {
   startDate: string = '';
   today = new Date();
-  choosenDate: Date = new Date();
+  chosenDate: Date = new Date();
   dates: Date[] = [];
   userData: any;
   private subscription!: Subscription;
@@ -26,12 +34,27 @@ export class CalendarComponent implements OnInit, OnDestroy {
   }[] = [];
 
   constructor(private homeService: HomeService) {}
+  @ViewChild('dateInput', { static: false }) dateInput!: ElementRef;
+
+  ngAfterViewInit() {
+    flatpickr(this.dateInput.nativeElement, {
+      defaultDate: this.today.toLocaleDateString(),
+      dateFormat: 'Y.m.d',
+      position: 'auto center',
+    });
+  }
   ngOnInit(): void {
     this.generateDays('next');
     this.subscription = this.homeService.userData$.subscribe((data) => {
       this.userData = data;
       this.updateAllTasks();
     });
+  }
+  formatDate(date: Date) {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Miesiące są zerowane
+    const year = date.getFullYear();
+    return `${year}.${month}.${day}`;
   }
   getTasksForDate(date: Date): any[] {
     return this.allTask
@@ -68,7 +91,8 @@ export class CalendarComponent implements OnInit, OnDestroy {
         start = new Date(this.dates[this.dates.length - 1]);
         break;
       case action === 'choose':
-        start = new Date(this.choosenDate);
+        const formatDate = this.formatDate(new Date(this.chosenDate));
+        start = new Date(formatDate);
         break;
       default:
         console.error('Invalid action');

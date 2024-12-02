@@ -1,11 +1,30 @@
 .calendar-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 30px;
   > .title {
     color: var(--accent);
     font-weight: 500;
     font-size: 3rem;
+  }
+  .button-container {
+    display: flex;
+    > .date-selector {
+      color: var(--accent);
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      outline: none;
+      border: none;
+      box-shadow: none;
+      background: none;
+    }
+    > svg {
+      fill: var(--accent);
+      height: 3rem;
+      cursor: pointer;
+    }
   }
 }
 .calendar-container {
@@ -26,9 +45,9 @@
     }
     > .tasks-container {
       > .task-card {
-        -webkit-box-shadow: 0px 7px 10px 4px rgba(0, 0, 0, 0.75);
-        -moz-box-shadow: 0px 7px 10px 4px rgba(0, 0, 0, 0.75);
-        box-shadow: 0px 7px 10px 4px rgba(0, 0, 0, 0.75);
+        -webkit-box-shadow: 0px 2px 3px 4px rgba(0, 0, 0, 0.75);
+        -moz-box-shadow: 0px 2px 3px 4px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 2px 3px 4px rgba(0, 0, 0, 0.75);
         background-color: var(--primary);
         width: 90%;
         height: 90px;

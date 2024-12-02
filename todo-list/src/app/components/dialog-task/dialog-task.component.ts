@@ -67,7 +67,6 @@ export class DialogTaskComponent implements AfterViewInit {
       dateFormat: 'd.m.Y   H:i',
       position: 'auto center',
       time_24hr: true,
-      
     });
   }
   submitData(): void {
